@@ -15,7 +15,7 @@
         <summary type="html"><![CDATA[寫完文章了！但我想要知道有誰來看我，在網頁上加上Google Tag，就能透過 Google Analytics 來分析瀏覽次數等等。]]></summary>
         <content type="html"><![CDATA[<p>寫完文章了！但我想要知道有誰來看我，在網頁上加上<strong>Google Tag</strong>，就能透過 Google Analytics 來分析瀏覽次數等等。</p>
 <!-- -->
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="如何在網站上">如何在網站上<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%A6%82%E4%BD%95%E5%9C%A8%E7%B6%B2%E7%AB%99%E4%B8%8A" class="hash-link" aria-label="如何在網站上的直接連結" title="如何在網站上的直接連結">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="安裝教學">安裝教學<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%AE%89%E8%A3%9D%E6%95%99%E5%AD%B8" class="hash-link" aria-label="安裝教學的直接連結" title="安裝教學的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="安裝-docusaurus-的套件-plugin-google-tag-manager">安裝 docusaurus 的套件 plugin-google-tag-manager<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%AE%89%E8%A3%9D-docusaurus-%E7%9A%84%E5%A5%97%E4%BB%B6-plugin-google-tag-manager" class="hash-link" aria-label="安裝 docusaurus 的套件 plugin-google-tag-manager的直接連結" title="安裝 docusaurus 的套件 plugin-google-tag-manager的直接連結">​</a></h3>
 <ol>
 <li>如果你在 docusaurus.config.ts 中，是使用<code>@docusaurus/preset-classic</code>的話，不用執行以下的安裝。</li>
@@ -123,6 +123,7 @@
 <li>完成建立</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="google_tag_manager_create_code_success" src="https://koteruon.github.io/assets/images/google_tag_manager_create_code_success-3f0c1e11e864cedc4d5428944e3966cb.png" width="1278" height="337" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="測試教學">測試教學<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E6%B8%AC%E8%A9%A6%E6%95%99%E5%AD%B8" class="hash-link" aria-label="測試教學的直接連結" title="測試教學的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="測試-gtm-是否運作正常">測試 GTM 是否運作正常<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E6%B8%AC%E8%A9%A6-gtm-%E6%98%AF%E5%90%A6%E9%81%8B%E4%BD%9C%E6%AD%A3%E5%B8%B8" class="hash-link" aria-label="測試 GTM 是否運作正常的直接連結" title="測試 GTM 是否運作正常的直接連結">​</a></h3>
 <ol>
 <li>點選右上角的預覽，來觀察 GTM 是否正確載入</li>
@@ -149,6 +150,7 @@
 <li>進到 GA，就會發現在過去 30 分鐘內活耀使用者人數有紀錄，這樣就是正常的</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="google_analytics_success" src="https://koteruon.github.io/assets/images/google_analytics_success-3908c0ca137c1c280c7a082180031aea.png" width="1278" height="518" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="刪除教學">刪除教學<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%88%AA%E9%99%A4%E6%95%99%E5%AD%B8" class="hash-link" aria-label="刪除教學的直接連結" title="刪除教學的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="刪除-gtm-的-container">刪除 GTM 的 container<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%88%AA%E9%99%A4-gtm-%E7%9A%84-container" class="hash-link" aria-label="刪除 GTM 的 container的直接連結" title="刪除 GTM 的 container的直接連結">​</a></h3>
 <ol>
 <li>點選要刪除的帳戶，按下帳戶設定</li>
@@ -158,7 +160,7 @@
 <li>按下刪除即可</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="google_tag_manager_delete_account_agree" src="https://koteruon.github.io/assets/images/google_tag_manager_delete_account_agree-f5213b16fd2ec772f2ca0a33262d1083.png" width="1278" height="238" class="img_ev3q"></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="心得">心得<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%BF%83%E5%BE%97" class="hash-link" aria-label="心得的直接連結" title="心得的直接連結">​</a></h3>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="心得">心得<a href="https://koteruon.github.io/blog/2025/01/06/docusaurus-google-tag-manager#%E5%BF%83%E5%BE%97" class="hash-link" aria-label="心得的直接連結" title="心得的直接連結">​</a></h2>
 <p>這些設定真的很繁瑣，不過拆解每一步驟之後，就會發現 GTM 的 debugger 做得還不錯，可以分析有沒有觸發，以及有沒有真實的拋轉，
 docusaurus 的 plugin 也大幅簡化了需要增加再 html 的 code，有這些幫助，讓建立 GTM 然後拋轉 GA 變得相對容易，
 這篇並沒有詳細介紹 GTM 的各種功能，有興趣的朋有可以更深入研究 GTM，甚至還可以記錄到哪一個按鈕，從哪一頁跳轉到哪一頁等等資訊。</p>]]></content>

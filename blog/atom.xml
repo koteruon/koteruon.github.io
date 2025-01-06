@@ -273,14 +273,19 @@ docusaurus 的 plugin 也大幅簡化了需要增加再 html 的 code，有這�
 <ol>
 <li>首先上傳原始程式碼到 private repository 的 master branch</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="testing_public_repository_push" src="https://koteruon.github.io/assets/images/testing_public_repository_push-f2e3f3b9b27e48586e769fbe93007bea.png" width="1275" height="445" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="testing_private_repository_push" src="https://koteruon.github.io/assets/images/testing_private_repository_push-f2e3f3b9b27e48586e769fbe93007bea.png" width="1275" height="445" class="img_ev3q"></p>
 <ol start="2">
 <li>點選進去可以看到進度，要確認每一個都有打勾，並且左邊是綠色的勾勾，若是紅色則需要查看問題並修正(多半是 yarn build 不過，透過本地端直接執行也會發現錯誤)</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="testing_public_repository_action" src="https://koteruon.github.io/assets/images/testing_public_repository_action-5e7b90006994206ccc5a62de15ff1915.png" width="1278" height="946" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="testing_private_repository_action" src="https://koteruon.github.io/assets/images/testing_private_repository_action-5e7b90006994206ccc5a62de15ff1915.png" width="1278" height="946" class="img_ev3q"></p>
 <ol start="3">
 <li>再來到public repository，可以看到自動生成一個pages build and deployment的action</li>
 </ol>
+<p><img decoding="async" loading="lazy" alt="testing_public_repository_action" src="https://koteruon.github.io/assets/images/testing_public_repository_action-19df53055e1a7c169fac4eb7dcc4f221.png" width="1278" height="429" class="img_ev3q"></p>
+<ol start="4">
+<li>確認build、report-build-status、deploy都有三個綠色勾勾，就可到<a href="https://koteruon.github.io/" target="_blank" rel="noopener noreferrer">https://使用者名稱.github.io</a>查看自己的網站</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="testing_public_repository_action_success" src="https://koteruon.github.io/assets/images/testing_public_repository_action_success-7e4fae620d2cc2b2c3f6477a6af999e7.png" width="1278" height="830" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="心得">心得<a href="https://koteruon.github.io/blog/2024/12/31/docusaurus-github-pages-config#%E5%BF%83%E5%BE%97" class="hash-link" aria-label="心得的直接連結" title="心得的直接連結">​</a></h2>
 <p>之前不小心在public repository，修改到描述、default branch等等，都會造成靜態頁面上傳失敗，
 這個時候把整個repository刪除重建就可以了，因此在建立Github Pages選項盡量都不要動，

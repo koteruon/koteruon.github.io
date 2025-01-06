@@ -275,7 +275,7 @@ docusaurus 的 plugin 也大幅簡化了需要增加再 html 的 code，有這�
 </ol>
 <p><img decoding="async" loading="lazy" alt="testing_private_repository_push" src="https://koteruon.github.io/assets/images/testing_private_repository_push-f2e3f3b9b27e48586e769fbe93007bea.png" width="1275" height="445" class="img_ev3q"></p>
 <ol start="2">
-<li>點選進去可以看到進度，要確認每一個都有打勾，並且左邊是綠色的勾勾，若是紅色則需要查看問題並修正(多半是 yarn build 不過，透過本地端直接執行也會發現錯誤)</li>
+<li>點選進去可以看到進度，要確認每一個都有打勾，並且左邊是綠色的勾勾，若是紅色則需要查看問題並修正(多半是 yarn build 失敗，透過本地端直接執行也會發現錯誤)</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="testing_private_repository_action" src="https://koteruon.github.io/assets/images/testing_private_repository_action-5e7b90006994206ccc5a62de15ff1915.png" width="1278" height="946" class="img_ev3q"></p>
 <ol start="3">

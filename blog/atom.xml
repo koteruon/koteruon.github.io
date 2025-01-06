@@ -271,8 +271,22 @@ docusaurus 的 plugin 也大幅簡化了需要增加再 html 的 code，有這�
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="測試流程">測試流程<a href="https://koteruon.github.io/blog/2024/12/31/docusaurus-github-pages-config#%E6%B8%AC%E8%A9%A6%E6%B5%81%E7%A8%8B" class="hash-link" aria-label="測試流程的直接連結" title="測試流程的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="驗證上傳-commit-後自動佈版">驗證上傳 commit 後自動佈版<a href="https://koteruon.github.io/blog/2024/12/31/docusaurus-github-pages-config#%E9%A9%97%E8%AD%89%E4%B8%8A%E5%82%B3-commit-%E5%BE%8C%E8%87%AA%E5%8B%95%E4%BD%88%E7%89%88" class="hash-link" aria-label="驗證上傳 commit 後自動佈版的直接連結" title="驗證上傳 commit 後自動佈版的直接連結">​</a></h3>
 <ol>
-<li>首先上傳原始程式碼到private repository的master branch</li>
-</ol>]]></content>
+<li>首先上傳原始程式碼到 private repository 的 master branch</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="testing_public_repository_push" src="https://koteruon.github.io/assets/images/testing_public_repository_push-f2e3f3b9b27e48586e769fbe93007bea.png" width="1275" height="445" class="img_ev3q"></p>
+<ol start="2">
+<li>點選進去可以看到進度，要確認每一個都有打勾，並且左邊是綠色的勾勾，若是紅色則需要查看問題並修正(多半是 yarn build 不過，透過本地端直接執行也會發現錯誤)</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="testing_public_repository_action" src="https://koteruon.github.io/assets/images/testing_public_repository_action-5e7b90006994206ccc5a62de15ff1915.png" width="1278" height="946" class="img_ev3q"></p>
+<ol start="3">
+<li>再來到public repository，可以看到自動生成一個pages build and deployment的action</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="心得">心得<a href="https://koteruon.github.io/blog/2024/12/31/docusaurus-github-pages-config#%E5%BF%83%E5%BE%97" class="hash-link" aria-label="心得的直接連結" title="心得的直接連結">​</a></h2>
+<p>之前不小心在public repository，修改到描述、default branch等等，都會造成靜態頁面上傳失敗，
+這個時候把整個repository刪除重建就可以了，因此在建立Github Pages選項盡量都不要動，
+最後看著push到private repository後就能自動在Github Pages看到最新內容真的很棒，
+我的測試基本上Github Pages是即時更新，最多也不超過1分鐘，
+所以沒看到更新，基本上就可以到private和public repository的action去找原因囉~</p>]]></content>
         <author>
             <name>Chao-En Huang</name>
             <uri>https://github.com/koteruon</uri>

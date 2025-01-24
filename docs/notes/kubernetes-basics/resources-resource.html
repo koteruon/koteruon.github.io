@@ -13,8 +13,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.195a34eb.css">
-<script src="/assets/js/runtime~main.ef56f959.js" defer="defer"></script>
-<script src="/assets/js/main.44d2aefc.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e52366c1.js" defer="defer"></script>
+<script src="/assets/js/main.5dd30ceb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -35,6 +35,7 @@
 </ul>
 </li>
 </ul>
+<p><img decoding="async" loading="lazy" alt="resources-resource" src="/assets/images/resources-resource-6dae42e905732be7f3a6966248736d99.png" width="3905" height="3825" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="可以總結成以下兩條公式">可以總結成以下兩條公式<a href="#可以總結成以下兩條公式" class="hash-link" aria-label="可以總結成以下兩條公式的直接連結" title="可以總結成以下兩條公式的直接連結">​</a></h3>
 <ol>
 <li><strong>資源請求與節點可分配資源的關係</strong>：<!-- -->
@@ -76,6 +77,7 @@
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="pod-的服務品質-qos">Pod 的服務品質 (QoS)<a href="#pod-的服務品質-qos" class="hash-link" aria-label="Pod 的服務品質 (QoS)的直接連結" title="Pod 的服務品質 (QoS)的直接連結">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="resource-qos" src="/assets/images/resource-qos-a97d7c37f0cca05e0b8b8fb9e54364a9.svg" width="769" height="301" class="img_ev3q"></p>
 <p>Kubernetes 根據資源的 Request 和 Limit，將 Pod 分為以下三種 <strong>服務品質 (Quality of Service, QoS) 等級</strong>：</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-guaranteed-保證">1. Guaranteed (保證)<a href="#1-guaranteed-保證" class="hash-link" aria-label="1. Guaranteed (保證)的直接連結" title="1. Guaranteed (保證)的直接連結">​</a></h3>
 <ul>
@@ -120,18 +122,18 @@
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="resource-設定的排列組合">Resource 設定的排列組合<a href="#resource-設定的排列組合" class="hash-link" aria-label="Resource 設定的排列組合的直接連結" title="Resource 設定的排列組合的直接連結">​</a></h2>
-<table><thead><tr><th>設定情境</th><th>Request 設定</th><th>Limit 設定</th><th>描述與應用</th></tr></thead><tbody><tr><td><strong>只設定 Request</strong></td><td>是</td><td>否</td><td>Kubernetes 保  證至少分配設定的 Request 資源，不限制容器的最大資源使用。適用於資源需求隨負載波動的應用，如 Web 應用或測試應用。</td></tr><tr><td><strong>只設定 Limit</strong></td><td>否</td><td>是</td><td>Kubernetes 預設將 Request 設為 Limit，確保容器的資源使用不超過設定的 Limit 且提供穩定性，QoS 等級為 <strong>Guaranteed</strong>，適合對資源有固定需求且不需彈性調整的應用。</td></tr><tr><td><strong>設定 Request 和 Limit</strong></td><td>是</td><td>是</td><td>Kubernetes 保證至少分配 Request 資源並限制資源使用不超過 Limit，提供資源彈性且防止過度使用，適用於需要穩定且可彈性調整資源的應用，如 Web 應用和 API 服務。</td></tr><tr><td><strong>不設定 Request 和 Limit</strong></td><td>否</td><td>否</td><td>容器無限制地使用資源，QoS 等級為 <strong>BestEffort</strong>，不保證資源分配穩定，適用於非關鍵性應用或開發測試環境。</td></tr></tbody></table>
+<table><thead><tr><th>設定情境</th><th>Request 設定</th><th>Limit 設定</th><th>描述與應用</th></tr></thead><tbody><tr><td><strong>只設定 Request</strong></td><td>是</td><td>否</td><td>Kubernetes 保證至少分配設定的 Request 資源，不限制容器的最大資源使用。適用於資源需求隨負載波動的應用，如 Web 應用或測試應用。</td></tr><tr><td><strong>只設定 Limit</strong></td><td>否</td><td>是</td><td>Kubernetes 預設將 Request 設為 Limit，確保容器的資源使用不超過設定的 Limit 且提供穩定性，QoS 等級為 <strong>Guaranteed</strong>，適合對資源有固定需求且不需彈性調整的應用。</td></tr><tr><td><strong>設定 Request 和 Limit</strong></td><td>是</td><td>是</td><td>Kubernetes 保證至少分配 Request 資源並限制資源使用不超過 Limit，提供資源彈性且防止過度使用，適用於需要穩定且可彈性調整資源的應用，如 Web 應用和 API 服務。</td></tr><tr><td><strong>不設定 Request 和 Limit</strong></td><td>否</td><td>否</td><td>容器無限制地使用資源，QoS 等級為 <strong>BestEffort</strong>，不保證資源分配穩定，適用於非關鍵性應用或開發測試環境。</td></tr></tbody></table>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="每種情況的敘述與應用">每種情況的敘述與應用<a href="#每種情況的敘述與應用" class="hash-link" aria-label="每種情況的敘述與應用的直接連結" title="每種情況的敘述與應用的直接連結">​</a></h3>
 <ol>
 <li><strong>只設定 Request</strong>：<!-- -->
 <ul>
-<li><strong>描述</strong>：當只設定 Request 時，Kubernetes 會保證容器至少獲得設定的 Request 資源，但不限制其最大資源使用。這樣可以確保容器在資源需求高峰時不會因為資源不足而出現問題，但仍可隨負載增加而動態使用更多資源。</li>
+<li><strong>描述</strong>：當只設定 Request 時，Kubernetes 會保證容器至少獲得設定的 Request 資源，但不限制其最大資源使用。這樣可以確保容器在資源需求高峰時不會因為資源不足而出現問題，但仍可隨負載  增加而動態使用更多資源。</li>
 <li><strong>應用</strong>：適用於資源需求會隨時間或流量波動的應用（如 Web 應用、測試環境），這些應用需要基礎的資源保證，但希望能靈活應對流量波動。</li>
 </ul>
 </li>
 <li><strong>只設定 Limit</strong>：<!-- -->
 <ul>
-<li><strong>描述</strong>：只設定 Limit 時  ，Kubernetes 預設將 Request 設為 Limit，這樣容器的資源使用不會超過設定的 Limit，並且其 QoS 等級為 <strong>Guaranteed</strong>。容器的資源使用被嚴格限制在設定的 Limit 範圍內，提供高穩定性，但會使資源分配效率降低，因為容器可能無法利用超過 Limit 的資源。</li>
+<li><strong>描述</strong>：只設定 Limit 時，Kubernetes 預設將 Request 設為 Limit，這樣容器的資源使用不會超過設定的 Limit，並且其 QoS 等級為 <strong>Guaranteed</strong>。容器的資源使用被嚴格限制在設定的 Limit 範圍內，提供高穩定性，但會使資源分配效率降低，因為容器可能無法利用超過 Limit 的資源。</li>
 <li><strong>應用</strong>：適用於需要固定、穩定資源使用的應用（如後端服務、資料庫服務），這些應用通常需要確保運行不會因資源不足而中斷，但不一定需要高彈性。</li>
 </ul>
 </li>
@@ -185,6 +187,16 @@
 </ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="實際開發經驗">實際開發經驗<a href="#實際開發經驗" class="hash-link" aria-label="實際開發經驗的直接連結" title="實際開發經驗的直接連結">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="resource-namespace" src="/assets/images/resource-namespace-1b63f5ecb3c3b8291d5d84c297224e96.svg" width="701" height="221" class="img_ev3q"></p>
+<p>kubernetes 建議在始終在工作負載上設置 Request 和 Limit，但是要準確評估使用那些值是非常不容易的。這是一個長期調整的過程，但仍有一些小建議：</p>
+<ol>
+<li>盡可能的設定 Request 和 Limit，否則在檢視資源利用率的時候，將會是意義不大的 100%。</li>
+<li>對不熟悉的應用設定較寬鬆的預設值。</li>
+<li>可以設定 Namespace 下的 ResourceQuota 和 LimitRange，或者使用第三方服務監控或者資源推薦服務，例如利用 kubecost、Opencost 來定期檢視資源利用率是否健康。</li>
+<li>同樣的應用，在利用資源率低和高之間，可能代表兩台主機的差距，也是成本優化巨大的關鍵。</li>
+<li>Helm 上的服務資源預設值可能不符合自身需求的資源分配，像在測試環境中的 ELK 服務並不需要預設那麼高的資源分配。</li>
+<li>可以多多利用各種工具找出在叢集中無人維護的服務。</li>
+</ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="結論">結論<a href="#結論" class="hash-link" aria-label="結論的直接連結" title="結論的直接連結">​</a></h2>
 <ul>

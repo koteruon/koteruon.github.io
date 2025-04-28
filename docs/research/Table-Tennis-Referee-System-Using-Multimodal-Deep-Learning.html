@@ -14,7 +14,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.b1704d0b.css">
-<script src="/assets/js/runtime~main.340c7272.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2f97d98b.js" defer="defer"></script>
 <script src="/assets/js/main.3961e7de.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -34,7 +34,7 @@
 <p>This study pioneers the use of bimodal action recognition for table tennis video analysis, integrating RGB images and pose data to detect rally events.
 A YOLOv7-based framework with pose estimation distinguishes ball, player, and table positions, enhancing system speed and accuracy.
 By combining ball trajectories with player actions, the system identifies rally start and end times, embedding results into output videos for easy analysis.</p>
-<p><img decoding="async" loading="lazy" alt="Table-Tennis-Video-Timeline-Diagram" src="/assets/images/Table-Tennis-Video-Timeline-Diagram-d625212d20bafde2f5fd6ac88e5faa13.png" width="1300" height="416" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Table-Tennis-Video-Timeline-Diagram" src="/assets/images/Table-Tennis-Video-Timeline-Diagram-a75d4fdaf2fff49cb7621228c3480913.png" width="3564" height="920" class="img_ev3q"></p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="method-flowchart">Method Flowchart<a href="#method-flowchart" class="hash-link" aria-label="Method Flowchart的直接連結" title="Method Flowchart的直接連結">​</a></h2>
 <p>The workflow of this study is as follows:</p>
@@ -45,7 +45,7 @@ An object detection model is used to predict the bounding boxes for each object,
 The ball trajectory coordinates and the action recognition results are then used to determine the conclusion of a table tennis point.</li>
 <li>Finally, the results are integrated and displayed in the output video.</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="Method-Flowchart" src="/assets/images/Method-Flowchart-b2be0538169c6cc3dbfa007732dd2254.png" width="1275" height="922" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Method-Flowchart" src="/assets/images/Method-Flowchart-c67e2d12d1c7887ae2ce8bac9f6ec5df.png" width="3874" height="2223" class="img_ev3q"></p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="bimodal-based-action-recognition-model">Bimodal-based Action Recognition Model<a href="#bimodal-based-action-recognition-model" class="hash-link" aria-label="Bimodal-based Action Recognition Model的直接連結" title="Bimodal-based Action Recognition Model的直接連結">​</a></h2>
 <p>This study aims to detect the start of each point in a table tennis match by identifying the <strong>serve actions</strong>, thereby enabling accurate recognition of players&#x27; continuous movements within each frame.</p>
@@ -57,7 +57,7 @@ The model utilizes the <strong>SlowFast network</strong> for feature extraction,
 Additionally, we introduce <strong>interaction modules</strong>—<strong>person-to-person</strong>, <strong>person-to-object</strong>, and <strong>hands-to-object interactions</strong>—capturing complex relationships between the target objects.
 These interactions are computed using a <strong>cross-attention mechanism</strong>, followed by <strong>intra-modality aggregation</strong> to refine the extracted features.
 Finally, <strong>temporal interaction</strong> and <strong>feature fusion modules</strong> are applied to integrate information across both time and modalities, resulting in improved action classification accuracy.</p>
-<p><img decoding="async" loading="lazy" alt="Network-Architecture" src="/assets/images/Network-Architecture-b8f21e066a7c34e2c58496ecbb4db79e.png" width="1298" height="770" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Network-Architecture" src="/assets/images/Network-Architecture-e27e25f5a9baaf6e855a322e1067b82b.png" width="3163" height="1980" class="img_ev3q"></p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="experimental-results-1">Experimental Results<a href="#experimental-results-1" class="hash-link" aria-label="Experimental Results的直接連結" title="Experimental Results的直接連結">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="serve" src="/assets/images/serve-5ae289f1c6c9b79cb8b56df8a19424a4.png" width="1600" height="1200" class="img_ev3q"></p>

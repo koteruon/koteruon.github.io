@@ -14,8 +14,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.b1704d0b.css">
-<script src="/assets/js/runtime~main.bd6d2586.js" defer="defer"></script>
-<script src="/assets/js/main.a9e84239.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.87f1d803.js" defer="defer"></script>
+<script src="/assets/js/main.6f0864ab.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -87,9 +87,13 @@ This recovery step ensures that the model’s parameters are not permanently aff
 <p><em>The segmentation result of UNet3+ on the Semantic Boundaries Dataset (SBD). The leftmost image displays the initial object, serving as the model&#x27;s input. The middle and rightmost images show the actual object categories and the model&#x27;s predicted outcomes, respectively.</em></p>
 </blockquote>
 <p>The segmentation results on the <strong>Semantic Boundaries Dataset (SBD)</strong> confirm that the UNet3+ model, even when subjected to weight perturbations, is capable of <strong>maintaining high segmentation accuracy</strong>, thus validating the effectiveness of the proposed perturbation strategy.</p>
-<p><img decoding="async" loading="lazy" alt="Weight-Noise-Training-Inference-Accuracy" src="/assets/images/Weight-Noise-Training-Inference-Accuracy-cf6795570c917854dff5ffbfa5bf4c01.png" width="2191" height="1623" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Weight-Noise-Only-Training-IoU" src="/assets/images/Weight-Noise-Only-Training-IoU-f46869576671e7693db1075dee028eb2.png" width="640" height="480" class="img_ev3q"></p>
 <blockquote>
-<p><em>The influence of injecting weight noise during the training and/or inference on network accuracy.</em></p>
+<p><em>The influence of injecting weight noise only during the training on network accuracy.</em></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="Weight-Noise-Training-Inference-IoU" src="/assets/images/Weight-Noise-Training-Inference-IoU-77f54870f05016f4b806ee042a27bc79.png" width="640" height="480" class="img_ev3q"></p>
+<blockquote>
+<p><em>The influence of injecting weight noise during the training and inference on network accuracy.</em></p>
 </blockquote>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="discussion-and-future-work">Discussion and Future Work<a href="#discussion-and-future-work" class="hash-link" aria-label="Discussion and Future Work的直接連結" title="Discussion and Future Work的直接連結">​</a></h2>

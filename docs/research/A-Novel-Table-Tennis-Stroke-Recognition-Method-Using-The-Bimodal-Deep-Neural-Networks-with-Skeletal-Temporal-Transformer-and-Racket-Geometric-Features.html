@@ -14,8 +14,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.4d27f2bd.css">
-<script src="/assets/js/runtime~main.26709289.js" defer="defer"></script>
-<script src="/assets/js/main.1ebea6e1.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.080d35c8.js" defer="defer"></script>
+<script src="/assets/js/main.2283de4d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -25,7 +25,7 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究">結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究<a href="#結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究" class="hash-link" aria-label="結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究的直接連結" title="結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究的直接連結">​</a></h2>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="實驗結果table-tennis-stroke-dataset">實驗結果(Table Tennis Stroke Dataset)<a href="#實驗結果table-tennis-stroke-dataset" class="hash-link" aria-label="實驗結果(Table Tennis Stroke Dataset)的直接連結" title="實驗結果(Table Tennis Stroke Dataset)的直接連結">​</a></h2>
-<div><link rel="preload" href="https://i.ytimg.com/vi/TH0YlqEaV9w/hqdefault.jpg" as="image"><article class="yt-lite" data-title="球擊球資料集結果分析(短)" style="background-image:url(https://i.ytimg.com/vi/TH0YlqEaV9w/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch 球擊球資料集結果分析(短)"></button></article></div>
+<div><link rel="preload" href="https://i.ytimg.com/vi/CKXgIAFW33E/hqdefault.jpg" as="image"><article class="yt-lite" data-title="球擊球資料集結果分析(短)" style="background-image:url(https://i.ytimg.com/vi/CKXgIAFW33E/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch 球擊球資料集結果分析(短)"></button></article></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="實驗結果jhmdb">實驗結果(JHMDB)<a href="#實驗結果jhmdb" class="hash-link" aria-label="實驗結果(JHMDB)的直接連結" title="實驗結果(JHMDB)的直接連結">​</a></h2>
 <div><link rel="preload" href="https://i.ytimg.com/vi/5BN9arXInyM/hqdefault.jpg" as="image"><article class="yt-lite" data-title="JHMDB結果分析" style="background-image:url(https://i.ytimg.com/vi/5BN9arXInyM/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch JHMDB結果分析"></button></article></div>
@@ -34,25 +34,137 @@
 <p>本研究提出一套結合<strong>2D 骨架模態</strong>與<strong>RGB 視覺模態</strong>之雙模態深度神經網路架構，應用於桌球擊球動作辨識任務。
 骨架模態採用 <code>SkateFormer</code> 模型建構時間序列特徵，描述姿態變化與語意脈絡；影像模態則使用 <code>SlowFast ResNet</code> 結構擷取紋理細節與場景資訊。
 模型額外整合球拍之<strong>區域面積</strong>與<strong>中心座標</strong>等幾何特徵，輔助標示揮拍過程的起訖區間。
-訓練資料集由專家示範建構，涵蓋正手與反手共八類典型擊球動作，並以滑動視窗方式建立具時間連續性的標註片段。
-實驗結果顯示，本方法在桌球資料集上達到 <strong>96.1%</strong> 的 Precision、<strong>96.4%</strong> 的 Recall 與 <strong>96.2%</strong> 的 F1-score，
-在 <code>JHMDB</code> 資料集上亦獲得 <strong>83.8%</strong> 的 F1-score，展現穩定的分類效能與泛化能力。</p>
+訓練資料集由專家示範建構，涵蓋正手與反手共八類典型擊球動作，並以滑動視窗方式建立具時間連續性的標註片段。</p>
+<p>實驗結果顯示，本方法在桌球資料集上達到 <strong>96.1%</strong> 的 Precision、<strong>96.4%</strong> 的 Recall 與 <strong>96.2%</strong> 的 F1-score，
+相較 HIT Network 相對提升 <strong>25.9%</strong>，整體效能亦優於 SkateFormer 與 SlowFast ResNet 等基準模型；
+在 <code>JHMDB</code> 通用動作資料集上亦取得 <strong>84.2%</strong> 的 Precision、<strong>83.8%</strong> 的 Recall 與 <strong>83.8%</strong> 的 F1-score，
+相較 HIT Network 相對提升 <strong>1.7%</strong>，展現穩定的分類效能與良好的泛化能力。
+本研究驗證骨架與影像模態之互補性，以及幾何特徵對動作邊界判斷之輔助價值，展現其於智慧體育分析場景中的應用潛力。</p>
 <p><strong>關鍵字</strong>：<code>雙模態深度神經網路</code>、<code>桌球動作辨識</code>、<code>骨架時序轉換器</code>、<code>球拍幾何特徵</code>、<code>實例分割</code></p>
-<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="proposed_flowchart" src="/assets/images/proposed_flowchart-9f3d9c86818772176b44b0f7c90e40d7.svg" width="3276" height="1561" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="proposed_hit_architecture" src="/assets/images/proposed_hit_architecture-24bb736541fce44c86de3b6830041204.svg" width="3159" height="2116" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>本方法之流程圖</strong></td><td style="text-align:center"><strong>雙模態動作識別架構圖</strong></td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="proposed_flowchart" src="/assets/images/proposed_flowchart-da26442a60d53a9996550a1a8e456ec1.svg" width="3276" height="1561" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="proposed_hit_architecture" src="/assets/images/proposed_hit_architecture-24bb736541fce44c86de3b6830041204.svg" width="3159" height="2116" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>本方法之流程圖</strong></td><td style="text-align:center"><strong>雙模態動作識別架構圖</strong></td></tr></tbody></table>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="緒論">緒論<a href="#緒論" class="hash-link" aria-label="緒論的直接連結" title="緒論的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="研究背景與動機">研究背景與動機<a href="#研究背景與動機" class="hash-link" aria-label="研究背景與動機的直接連結" title="研究背景與動機的直接連結">​</a></h3>
+<p>隨著智慧科技快速 發展，運動分析逐漸導入人工智慧技術，以提升訓練與比賽的效率與精準度。
+以桌球為例，傳統訓練方式倚賴人工標記與影片回放，不僅耗時，也難以客觀量化動作細節，尤其在面對大量影片分析時，效率與準確性更顯不足。</p>
+<p>近年來，<strong>人體姿態估測（Human Pose Estimation）技術</strong>被廣泛應用於運動動作辨識任務中。
+透過卷積神經網路預測人體關節位置，建立骨架輸入進行分類，不但具備抗背景干擾能力，也能清楚描述運動結構。</p>
+<p>然而，<strong>僅依賴單幀骨架模態仍面臨以下挑戰</strong>：</p>
+<ul>
+<li>桌球動作類型外觀相似，僅從單幀骨架難以準確分類。</li>
+<li>遮蔽與快速動作常導致關鍵點缺失，降低辨識穩定性。</li>
+<li>骨架無法完整呈現球拍等具關鍵語意的資訊。</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="intro_limitations_of_single_frame" src="/assets/images/intro_limitations_of_single_frame-de48e6c72f0260813362c2198b9a8d2c.png" width="1920" height="650" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>外觀相似的單幀骨架姿態對應不同擊球類型</strong>（左：正手切球；右：正手平擊）</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="多模態融合的必要性">多模態融合的必要性<a href="#多模態融合的必要性" class="hash-link" aria-label="多模態融合的必要性的直接連結" title="多模態融合的必要性的直接連結">​</a></h3>
+<p>為克服上述限制，研究開始導入多模態設計：</p>
+<ul>
+<li><strong>RGB 影像模態</strong>：提供豐富外觀與場景資訊，有助於補足骨架遮蔽問題。</li>
+<li><strong>骨架模態</strong>：去除背景、強調結構，但缺乏時間與物件語意，且易因遮蔽導致關節點缺失。</li>
+<li><strong>球拍幾何特徵</strong> ：擊球揮拍方向與角度能反映策略與球路變化，因此面積和中心位置能提供關鍵的時序定位資訊。</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="intro_rgb_base_compensation" src="/assets/images/intro_rgb_base_compensation-d4fa2cc6d4f64c7fa65c5e5223e446ba.png" width="1920" height="650" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>骨架點因遮擋產生缺失現象</strong>（左：原始 RGB 影像；右：人體姿態估測結果）</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="研究目標">研究目標<a href="#研究目標" class="hash-link" aria-label="研究目標的直接連結" title="研究目標的直接連結">​</a></h3>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>研究目標</div><div class="admonitionContent_BuS1"><p>本研究提出一套<strong>雙模態融合桌球動作辨識系統</strong>，核心設計如下：</p><ul>
+<li><strong>結合骨架的空間與時間資訊</strong>，提升時序建模能力。</li>
+<li><strong>輔以 RGB 影像模態</strong>，補強骨架在遮蔽與細節辨識上的限制。</li>
+<li><strong>納入球拍區域幾何特徵</strong>，協助精確掌握動作起始與終止時間點。</li>
+</ul><p>透過骨架與影像的語意互補，結合球拍資訊的時間定位能力，本系統具備高度辨識準確性與實務應用潛力。</p></div></div>
 <hr>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="完整實驗結果">完整實驗結果<a href="#完整實驗結果" class="hash-link" aria-label="完整實驗結果的直接連結" title="完整實驗結果的直接連結">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文獻回顧">文獻回顧<a href="#文獻回顧" class="hash-link" aria-label="文獻回顧的直接連結" title="文獻回顧的直接連結">​</a></h2>
+<p>雖然桌球為受關注的競技運動，針對其<strong>擊球動作辨識</strong>的研究仍相對有限。為系統性整理相關工作，本章將文獻分為以下兩類：</p>
+<ul>
+<li><strong>專用方法</strong>：針對桌球擊球辨識所設計的模型</li>
+<li><strong>通用方法</strong>：應用於人體動作辨識並延伸至桌球任務的架構</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="專用方法桌球擊球辨識基於-2d-姿態估計的方法">專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)<a href="#專用方法桌球擊球辨識基於-2d-姿態估計的方法" class="hash-link" aria-label="專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)的直接連結" title="專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)的直接連結">​</a></h3>
+<p>2D Pose Estimation 技術廣泛用於動作分析，透過模型預測人體關節點位置（如頭部、手肘、膝蓋），並可用於時間序列動作識別。
+<a href="https://openaccess.thecvf.com/content/CVPR2021W/CVSports/html/Kulkarni_Table_Tennis_Stroke_Recognition_Using_Two-Dimensional_Human_Pose_Estimation_CVPRW_2021_paper.html" target="_blank" rel="noopener noreferrer">Kulkarni 和 Shenoy</a> 提出一套結合 <strong>HRNet 骨架估測</strong>與 <strong>Temporal Convolutional Network (TCN)</strong> 的擊球分類模型，流程如下：</p>
+<ul>
+<li>使用 SSD 偵測人物區域</li>
+<li>用 HRNet 擷取右手肘、右手腕與雙肩之關節點</li>
+<li>利用 TCN 模型建構 100 幀時間序列進行分類</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li>成功分類 11 種擊球動作，平均辨識率達 <strong>98.72%</strong></li>
+<li>展現了 2D 骨架資訊在桌球擊球動作辨識上的可行性與成效</li>
+</ul>
+<p><strong>限制：</strong></p>
+<ul>
+<li>僅使用少數關節，無法建立完整骨架語意</li>
+<li>TCN 缺乏關鍵關節與時間範圍的選擇彈性</li>
+<li>未建構空間與時間的結構關聯，語意易流失</li>
+<li>前視角攝影可能干擾比賽，影響實務應用</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="related_work_architecture" src="/assets/images/related_work_architecture-83d84d72cbe3146c38a6a858b8974d15.gif" width="820" height="295" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>TCN 之模型架構圖</strong></td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="專用方法桌球擊球辨識基於雙分支時空卷積的方法">專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)<a href="#專用方法桌球擊球辨識基於雙分支時空卷積的方法" class="hash-link" aria-label="專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)的直接連結" title="專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)的直接連結">​</a></h3>
+<p><a href="https://link.springer.com/article/10.1007/s11042-020-08917-3" target="_blank" rel="noopener noreferrer">Martin 等人 提出 <strong>Twin Spatio-Temporal Convolutional Neural Network (TSTCNN)</strong></a>，由兩條 3D 卷積分支組成：</p>
+<ul>
+<li>分別處理 RGB 原始畫面與 Optical Flow 特徵</li>
+<li>利用 3D 卷積建構空間-時間特徵</li>
+<li>最後融合兩模態資訊進行分類</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li>雙分支設計同時捕捉 <strong>空間構型（RGB）</strong> 與 <strong>運動動態（Optical Flow）</strong></li>
+</ul>
+<p><strong>限制：</strong></p>
+<ul>
+<li>光流在高速度與運動模糊場景中準確度下降</li>
+<li>未引入骨架語意，對細粒度肢體姿勢辨識不足</li>
+<li>僅以<strong>  雙線性插值</strong>進行靜態融合，缺乏注意力機制的語意選擇性與適應性</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="related_work_architecture" src="/assets/images/related_work_architecture-a3f4f45dfe0d65dbc4ef5b71f97bb8ea.png" width="1352" height="502" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="related_work_experimental_results" src="/assets/images/related_work_experimental_results-7883d65a2ee3778dea03a3cf92f25430.png" width="1796" height="1012" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>TSTCNN 之模型架構圖</strong></td><td style="text-align:center"><strong>光流影像產生流程示意圖</strong>（左上：原始 RGB 影像；右上：光流幅度影像；左下：估計出的前景影像；右下：過濾後的光流影像）</td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="通用方法人類動作辨識基於骨架時序建模的方法">通用方法：人類動作辨識(基於骨架時序建模的方法)<a href="#通用方法人類動作辨識基於骨架時序建模的方法" class="hash-link" aria-label="通用方法：人類動作辨識(基於骨架時序建模的方法)的直接連結" title="通用方法：人類動作辨識(基於骨架時序建模的方法)的直接連結">​</a></h3>
+<p>骨架模態具備抗背景干擾與光照變化的優勢，已成為動作辨識的重要依據。<a href="https://link.springer.com/chapter/10.1007/978-3-031-72940-9_23" target="_blank" rel="noopener noreferrer">Do 與 Kim 提出的 <strong>SkateFormer</strong></a> 是此方向的代表性模型，其設計特色如下：</p>
+<ul>
+<li>採用 Transformer 架構，將 3D 骨架序列依空間與時間語意結構劃分為四個分支進行建模</li>
+<li>引入 Partition-Reversal 機制切分還原特徵，維持骨架時序結構一致性</li>
+<li>擅長建構遠距關節與長時間依賴，提升動  作時序辨識能力</li>
+</ul>
+<p><strong>限制：</strong></p>
+<ul>
+<li>高動態動作（如揮拍、轉身）易導致關節<strong>遮蔽、缺失或錯置</strong></li>
+<li>骨架品質低落將直接傳遞至注意力機制，影響語意聚焦</li>
+<li>完全依賴骨架模態，缺乏 RGB 或光流等<strong>多模態補強線索</strong></li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="related_work_architecture" src="/assets/images/related_work_architecture-67deae3c4558611ec437868a5be87a3e.png" width="286" height="411" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>理想情況下的完整關節量測</strong></td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="通用方法人類動作辨識基於互動注意力建模的方法">通用方法：人類動作辨識(基於互動注意力建模的方法)<a href="#通用方法人類動作辨識基於互動注意力建模的方法" class="hash-link" aria-label="通用方法：人類動作辨識(基於互動注意力建模的方法)的直接連結" title="通用方法：人類動作辨識(基於互動注意力建模的方法)的直接連結">​</a></h3>
+<p><a href="https://openaccess.thecvf.com/content/WACV2023/html/Faure_Holistic_Interaction_Transformer_Network_for_Action_Detection_WACV_2023_paper.html" target="_blank" rel="noopener noreferrer">Faure 等人提出的 <strong>HIT Network</strong></a> 採用雙分支設計，整合 RGB 與骨架模態：</p>
+<ul>
+<li><strong>RGB 分支</strong> 擅長捕捉動態紋理與物件互動</li>
+<li><strong>骨架分支</strong> 建立關節之間的空間語意關聯</li>
+<li>最終透過 Attentive Feature Fusion Module 進行深度融合，用於分類與動作區段預測</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li>結合 <strong>視覺（RGB）</strong> 與 <strong>骨架（Pose）</strong> 表徵，透過 <strong>注意力融合機制</strong> 實現穩健的雙模態整合</li>
+<li> 同時利用 <strong>外觀紋理</strong> 與 <strong>姿態結構</strong> 資訊，強化對 <strong>動作語意</strong> 的理解與分類能力</li>
+</ul>
+<p><strong>限制：</strong></p>
+<ul>
+<li>僅針對<strong>單幀骨架</strong>進行 Pose Encoding，缺乏時間建模能力</li>
+<li>難以辨識動作中的微小變化與演化順序，易造成語意混淆</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="related_work_architecture" src="/assets/images/related_work_architecture-971272adb2a2b25f25d518673acdc564.gif" width="820" height="631" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>單幀骨架編碼示意圖</strong></td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="實驗結果">實驗結果<a href="#實驗結果" class="hash-link" aria-label="實驗結果的直接連結" title="實驗結果的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="jhmdb-結果分析">JHMDB 結果分析<a href="#jhmdb-結果分析" class="hash-link" aria-label="JHMDB 結果分析的直接連結" title="JHMDB 結果分析的直接連結">​</a></h3>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="球擊球資料集結果分析">球擊球資料集結果分析<a href="#球擊球資料集結果分析" class="hash-link" aria-label="球擊球資料集結果分析的直接連結" title="球擊球資料  集結果分析的直接連結">​</a></h3>
-<div><link rel="preload" href="https://i.ytimg.com/vi/SjlQ7OOx92s/hqdefault.jpg" as="image"><article class="yt-lite" data-title="球擊球資料集結果分析(長)" style="background-image:url(https://i.ytimg.com/vi/SjlQ7OOx92s/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch 球擊球資料集結果分析(長)"></button></article></div>
+<div><link rel="preload" href="https://i.ytimg.com/vi/5BN9arXInyM/hqdefault.jpg" as="image"><article class="yt-lite" data-title="JHMDB結果分析" style="background-image:url(https://i.ytimg.com/vi/5BN9arXInyM/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch JHMDB結果分析"></button></article></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="球擊球資料集結果分析">球擊球資料集結果分析<a href="#球擊球資料集結果分析" class="hash-link" aria-label="球擊球資料集結果分析的直接連結" title="球擊球資料集結果分析的直接連結">​</a></h3>
+<div><link rel="preload" href="https://i.ytimg.com/vi/Fu2BxvMJUj8/hqdefault.jpg" as="image"><article class="yt-lite" data-title="球擊球資料集結果分析(長)" style="background-image:url(https://i.ytimg.com/vi/Fu2BxvMJUj8/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch 球擊球資料集結果分析(長)"></button></article></div>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="相關程式碼">相關程式碼<a href="#相關程式碼" class="hash-link" aria-label="相關程式碼的直接連結" title="相關程式碼的直接連結">​</a></h2>
 <!-- -->
 <!-- -->
 <!-- -->
 <div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-our-proposed-method" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-our-proposed-method</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div>
-<div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-racket-segmentation" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-racket-segmentation</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/research"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">Introduction</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/research/Table-Tennis-Referee-System-Using-Multimodal-Deep-Learning"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">Table Tennis Referee System Using Multimodal Deep Learning</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究" class="table-of-contents__link toc-highlight">結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究</a></li><li><a href="#實驗結果table-tennis-stroke-dataset" class="table-of-contents__link toc-highlight">實驗結果(Table Tennis Stroke Dataset)</a></li><li><a href="#實驗結果jhmdb" class="table-of-contents__link toc-highlight">實驗結果(JHMDB)</a></li><li><a href="#摘要" class="table-of-contents__link toc-highlight">摘要</a></li><li><a href="#緒論" class="table-of-contents__link toc-highlight">緒論</a></li><li><a href="#完整實驗結果" class="table-of-contents__link toc-highlight">完整實驗結果</a><ul><li><a href="#jhmdb-結果分析" class="table-of-contents__link toc-highlight">JHMDB 結果分析</a></li><li><a href="#球擊球資料集結果分析" class="table-of-contents__link toc-highlight">球擊球資料集結果分析</a></li></ul></li><li><a href="#相關程式碼" class="table-of-contents__link toc-highlight">相關程式碼</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://pda.104.com.tw/profile/preview?vno=75wef33ky" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
+<div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-racket-segmentation" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-racket-segmentation</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/research"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">Introduction</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/research/Table-Tennis-Referee-System-Using-Multimodal-Deep-Learning"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">Table Tennis Referee System Using Multimodal Deep Learning</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究" class="table-of-contents__link toc-highlight">結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究</a></li><li><a href="#實驗結果table-tennis-stroke-dataset" class="table-of-contents__link toc-highlight">實驗結果(Table Tennis Stroke Dataset)</a></li><li><a href="#實驗結果jhmdb" class="table-of-contents__link toc-highlight">實驗結果(JHMDB)</a></li><li><a href="#摘要" class="table-of-contents__link toc-highlight">摘要</a></li><li><a href="#緒論" class="table-of-contents__link toc-highlight">緒論</a><ul><li><a href="#研究背景與動機" class="table-of-contents__link toc-highlight">研究背景與動機</a></li><li><a href="#多模態融合的必要性" class="table-of-contents__link toc-highlight">多模態融合的必要性</a></li><li><a href="#研究目標" class="table-of-contents__link toc-highlight">研究目標</a></li></ul></li><li><a href="#文獻回顧" class="table-of-contents__link toc-highlight">文獻回顧</a><ul><li><a href="#專用方法桌球擊球辨識基於-2d-姿態估計的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)</a></li><li><a href="#專用方法桌球擊球辨識基於雙分支時空卷積的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)</a></li><li><a href="#通用方法人類動作辨識基於骨架時序建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於骨架時序建模的方法)</a></li><li><a href="#通用方法人類動作辨識基於互動注意力建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於互動注意力建模的方法)</a></li></ul></li><li><a href="#實驗結果" class="table-of-contents__link toc-highlight">實驗結果</a><ul><li><a href="#jhmdb-結果分析" class="table-of-contents__link toc-highlight">JHMDB 結果分析</a></li><li><a href="#球擊球資料集結果分析" class="table-of-contents__link toc-highlight">球擊球資料集結果分析</a></li></ul></li><li><a href="#相關程式碼" class="table-of-contents__link toc-highlight">相關程式碼</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://pda.104.com.tw/profile/preview?vno=75wef33ky" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
               <p>
               illustrations by <a href="https://storyset.com/web">Storyset</a>
               </p>

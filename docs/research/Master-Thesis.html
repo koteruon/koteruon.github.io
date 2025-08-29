@@ -14,8 +14,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.4d27f2bd.css">
-<script src="/assets/js/runtime~main.453b2887.js" defer="defer"></script>
-<script src="/assets/js/main.c4314502.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.edb5dd24.js" defer="defer"></script>
+<script src="/assets/js/main.5df106f2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -646,19 +646,19 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="資料集">資料集<a href="#資料集" class="hash-link" aria-label="資料集的直接連結" title="資料集的直接連結">​</a></h3>
 <p>本研究使用兩組資料集進行訓練與評估：JHMDB 公開資料集與自建的桌球擊球資料集。</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="jhmdb">JHMDB<a href="#jhmdb" class="hash-link" aria-label="JHMDB的直接連結" title="JHMDB的直接連結">​</a></h4>
-<p>JHMDB（Joint-annotated Human Motion Data Base）是針對動作辨識任務設計的公開資料集【22】，涵蓋 21 類日常動作（如跳躍、投球、走路等），共收錄 960 段裁切與標準化的短影片，每段影片僅呈現單一動作，總計 31,838 幀皆具有人工標註，解析度為 320×240，如下圖所示。</p>
+<p>JHMDB（Joint-annotated Human Motion Data Base）是針對動作辨識任務設計的公開資料集 <a href="#ref22">[22]</a> ，涵蓋 21 類日常動作（如跳躍、投球、走路等），共收錄 960 段裁切與標準化的短影片，每段影片僅呈現單一動作，總計 31,838 幀皆具有人工標註，解析度為 320×240，如下圖所示。</p>
 <ul>
 <li>
 <p><strong>實驗設定：</strong>
-本研究依據 HIT Network【9】的實驗設置，採用官方提供之 <code>split-1</code> 分割進行訓練與測試，並以幀級平均精度（frame-level mAP）作為主要評估指標，用以驗證模型的辨識準確性與時間感知能力。</p>
+本研究依據 HIT Network <a href="#ref9">[9]</a> 的實驗設置，採用官方提供之 <code>split-1</code> 分割進行訓練與測試，並以幀級平均精度（frame-level mAP）作為主要評估指標，用以驗證模型的辨識準確性與時間感知能力。</p>
 </li>
 <li>
 <p><strong>標註來源與處理：</strong>
 人物邊界框、物件偵測與骨架資料皆沿用 HIT Network 提供之偵測結果：</p>
 <ul>
-<li><strong>人物偵測：</strong> 採用 YOWO 方法【23】對所有關鍵影格進行人物框偵測。</li>
-<li><strong>物件偵測：</strong> 使用 Faster R-CNN【24】搭配 ResNet-50-FPN【18, 25】主幹網路，於 ImageNet【26】預訓練後，在 MSCOCO【27】資料集上微調。</li>
-<li><strong>姿態估計：</strong> 利用 Detectron 平台【28】中的姿態模型進行骨架關節預測，模型結合 Faster R-CNN 之 RPN【24】與 ResNet-50-FPN 主幹網路，於 MSCOCO keypoints 資料集訓練，可輸出 17 個 COCO 格式的關節點。</li>
+<li><strong>人物偵測：</strong> 採用 YOWO 方法 <a href="#ref23">[23]</a> 對所有關鍵影格進行人物框偵測。</li>
+<li><strong>物件偵測：</strong> 使用 Faster R-CNN <a href="#ref24">[24]</a> 搭配 ResNet-50-FPN【18, 25】主幹網路，於 ImageNet <a href="#ref26">[26]</a> 預訓練後，在 MSCOCO <a href="#ref27">[27]</a> 資料集上微調。</li>
+<li><strong>姿態估計：</strong> 利用 Detectron 平台 <a href="#ref28">[28]</a> 中的姿態模型進行骨架關節預測，模型結合 Faster R-CNN 之 RPN <a href="#ref24">[24]</a> 與 ResNet-50-FPN 主幹網路，於 MSCOCO keypoints 資料集訓練，可輸出 17 個 COCO 格式的關節點。</li>
 </ul>
 </li>
 <li>
@@ -670,7 +670,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </ul>
 </li>
 </ul>
-<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="experiments_jhmdb" src="/assets/images/experiments_jhmdb-9c8a6296109f48bdb19d228036b54930.svg" width="2848" height="1455" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>JHMDB 之範例影  格</strong></td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="experiments_jhmdb" src="/assets/images/experiments_jhmdb-9c8a6296109f48bdb19d228036b54930.svg" width="2848" height="1455" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>JHMDB 之範例影格</strong></td></tr></tbody></table>
 <hr>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="桌球擊球資料集">桌球擊球資料集<a href="#桌球擊球資料集" class="hash-link" aria-label="桌球擊球資料集的直接連結" title="桌球擊球資料集的直接連結">​</a></h4>
 <p>為驗證所提方法於<strong>實際運動情境中辨識細微動作差異的能力</strong>，本研究構建一組具代表性的桌球擊球資料集，涵蓋八類典型擊球動作，並結合時序切片、動作標註與多模態資訊擷取，建構高品質的雙模態輸入。</p>
@@ -866,7 +866,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </li>
 <li>
 <p><strong>數據比較結果</strong>：</p>
-<table><thead><tr><th style="text-align:center">模型</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">HIT Network [9]</td><td style="text-align:center">83.9%</td><td style="text-align:center">82.4%</td><td style="text-align:center">82.4%</td></tr><tr><td style="text-align:center">Proposed Method (w/o racket)</td><td style="text-align:center">84.2%</td><td style="text-align:center">83.8%</td><td style="text-align:center">83.8%</td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center">模型</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">HIT Network <a href="#ref9">[9]</a></td><td style="text-align:center">83.9%</td><td style="text-align:center">82.4%</td><td style="text-align:center">82.4%</td></tr><tr><td style="text-align:center">Proposed Method (w/o racket)</td><td style="text-align:center">84.2%</td><td style="text-align:center">83.8%</td><td style="text-align:center">83.8%</td></tr></tbody></table>
 </li>
 <li>
 <p><strong>提升原因</strong>：</p>
@@ -906,7 +906,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </li>
 <li>
 <p>平均分類表現如下：</p>
-<table><thead><tr><th style="text-align:center">Model</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">SlowFast ResNet [21]</td><td style="text-align:center">77.8%</td><td style="text-align:center">76.4%</td><td style="text-align:center">73.4%</td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center">Model</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">SlowFast ResNet <a href="#ref21">[21]</a></td><td style="text-align:center">77.8%</td><td style="text-align:center">76.4%</td><td style="text-align:center">73.4%</td></tr></tbody></table>
 </li>
 </ul>
 </li>
@@ -940,7 +940,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </ul>
 </li>
 </ul>
-<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="experiments_hit_directional_ambiguity_in_single_frame_skeleton" src="/assets/images/experiments_hit_directional_ambiguity_in_single_frame_skeleton-560de03adeca008d03ad50c77e33b137.svg" width="3159" height="1098" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>單幀 骨架姿態之方向性模糊示意圖</strong></td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="experiments_hit_directional_ambiguity_in_single_frame_skeleton" src="/assets/images/experiments_hit_directional_ambiguity_in_single_frame_skeleton-560de03adeca008d03ad50c77e33b137.svg" width="3159" height="1098" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>單幀骨架姿態之方向性模糊示意圖</strong></td></tr></tbody></table>
 <ul>
 <li>
 <p><strong>問題二：姿態歧義</strong>：</p>
@@ -979,7 +979,7 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 </li>
 <li>
 <p><strong>整體表現</strong>：</p>
-<table><thead><tr><th style="text-align:center">Model</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">HIT Network [9]</td><td style="text-align:center">78.7%</td><td style="text-align:center">81.2%</td><td style="text-align:center">76.4%</td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center">Model</th><th style="text-align:center">Precision</th><th style="text-align:center">Recall</th><th style="text-align:center">F1-score</th></tr></thead><tbody><tr><td style="text-align:center">HIT Network <a href="#ref9">[9]</a></td><td style="text-align:center">78.7%</td><td style="text-align:center">81.2%</td><td style="text-align:center">76.4%</td></tr></tbody></table>
 </li>
 </ul>
 <table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="hit_add_single_frame_pose" src="/assets/images/hit_add_single_frame_pose-e4a142d8dc412f09bf9c135d67cb3bcb.png" width="6090" height="5889" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>HIT Network 模型之混淆矩陣結果</strong></td></tr></tbody></table>
@@ -990,12 +990,128 @@ M1001 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlis
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="球擊球資料集結果分析">球擊球資料集結果分析<a href="#球擊球資料集結果分析" class="hash-link" aria-label="球擊球資料集結果分析的直接連結" title="球擊球資料集結果分析的直接連結">​</a></h3>
 <div><link rel="preload" href="https://i.ytimg.com/vi/Fu2BxvMJUj8/hqdefault.jpg" as="image"><article class="yt-lite" data-title="球擊球資料集結果分析(長)" style="background-image:url(https://i.ytimg.com/vi/Fu2BxvMJUj8/hqdefault.jpg);--aspect-ratio:56.25%"><button type="button" class="lty-playbtn" aria-label="Watch 球擊球資料集結果分析(長)"></button></article></div>
 <hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="參考文獻">參考文獻<a href="#參考文獻" class="hash-link" aria-label="參考文獻的直接連結" title="參考文獻的直接連結">​</a></h2>
+<a id="ref1" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[1]</strong> M. Andriluka, L. Pishchulin, P. Gehler, and B. Schiele, &quot;2d human pose
+estimation: New benchmark and state of the art analysis,&quot; in Proceedings of the
+IEEE Conference on computer Vision and Pattern Recognition, 2014, pp. 3686–3693.</p>
+<a id="ref2" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[2]</strong> K. M. Kulkarni and S. Shenoy, &quot;Table tennis stroke recognition using
+two-dimensional human pose estimation,&quot; in Proceedings of the IEEE/CVF
+conference on computer vision and pattern recognition, 2021, pp. 4576–4584.</p>
+<a id="ref3" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[3]</strong> W. Liu et al., &quot;Ssd: Single shot multibox detector,&quot; in Computer
+Vision–ECCV 2016: 14th European Conference, Amsterdam, The Netherlands, October
+11–14, 2016, Proceedings, Part I 14, 2016: Springer, pp. 21–37.</p>
+<a id="ref4" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[4]</strong> K. Sun, B. Xiao, D. Liu, and J. Wang, &quot;Deep high-resolution
+representation learning for human pose estimation,&quot; in Proceedings of the
+IEEE/CVF conference on computer vision and pattern recognition, 2019, pp.
+5693–5703.</p>
+<a id="ref5" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[5]</strong> P.-E. Martin, J. Benois-Pineau, R. Péteri, and J. Morlier, &quot;Fine grained
+sport action recognition with Twin spatio-temporal convolutional neural
+networks: Application to table tennis,&quot; Multimedia Tools and Applications, vol.
+79, pp. 20429–20447, 2020.</p>
+<a id="ref6" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[6]</strong> Z. Zivkovic and F. Van Der Heijden, &quot;Efficient adaptive density
+estimation per image pixel for the task of background subtraction,&quot; Pattern
+recognition letters, vol. 27, no. 7, pp. 773–780, 2006.</p>
+<a id="ref7" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[7]</strong> J. Do and M. Kim, &quot;Skateformer: skeletal-temporal transformer for human
+action recognition,&quot; in European Conference on Computer Vision, 2024: Springer,
+pp. 401–420.</p>
+<a id="ref8" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[8]</strong> A. Vaswani et al., &quot;Attention is all you need,&quot; Advances in neural
+information processing systems, vol. 30, 2017.</p>
+<a id="ref9" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[9]</strong> G. J. Faure, M.-H. Chen, and S.-H. Lai, &quot;Holistic interaction
+transformer network for action detection,&quot; in Proceedings of the IEEE/CVF winter
+conference on applications of computer vision, 2023, pp. 3340–3350.</p>
+<a id="ref10" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[10]</strong> A. Krizhevsky, I. Sutskever, and G. E. Hinton, &quot;ImageNet classification
+with deep convolutional neural networks,&quot; Communications of the ACM, vol. 60,
+no. 6, pp. 84–90, 2017.</p>
+<a id="ref11" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[11]</strong> J. Long, E. Shelhamer, and T. Darrell, &quot;Fully convolutional networks
+for semantic segmentation,&quot; in Proceedings of the IEEE conference on computer
+vision and pattern recognition, 2015, pp. 3431–3440.</p>
+<a id="ref12" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[12]</strong> K. He, G. Gkioxari, P. Dollár, and R. Girshick, &quot;Mask r-cnn,&quot; in
+Proceedings of the IEEE international conference on computer vision, 2017, pp.
+2961–2969.</p>
+<a id="ref13" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[13]</strong> D. Bolya, C. Zhou, F. Xiao, and Y. J. Lee, &quot;Yolact: Real-time instance
+segmentation,&quot; in Proceedings of the IEEE/CVF international conference on
+computer vision, 2019, pp. 9157–9166.</p>
+<a id="ref14" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[14]</strong> Ultralytics, &quot;Ultralytics YOLOv11,&quot; 2024. [Online]. Available:
+<a href="https://github.com/ultralytics/ultralytics" target="_blank" rel="noopener noreferrer">https://github.com/ultralytics/ultralytics</a>.</p>
+<a id="ref15" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[15]</strong> G. Jocher, &quot;Ultralytics YOLOv5,&quot; 2020. [Online]. Available:
+<a href="https://github.com/ultralytics/yolov5" target="_blank" rel="noopener noreferrer">https://github.com/ultralytics/yolov5</a>.</p>
+<a id="ref16" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[16]</strong> S. Liu, L. Qi, H. Qin, J. Shi, and J. Jia, &quot;Path aggregation network
+for instance segmentation,&quot; in Proceedings of the IEEE conference on computer
+vision and pattern recognition, 2018, pp. 8759–8768.</p>
+<a id="ref17" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[17]</strong> K. He, X. Zhang, S. Ren, and J. Sun, &quot;Spatial pyramid pooling in deep
+convolutional networks for visual recognition,&quot; IEEE transactions on pattern
+analysis and machine intelligence, vol. 37, no. 9, pp. 1904–1916, 2015.</p>
+<a id="ref18" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[18]</strong> T.-Y. Lin, P. Dollár, R. Girshick, K. He, B. Hariharan, and S.
+Belongie, &quot;Feature pyramid networks for object detection,&quot; in Proceedings of the
+IEEE conference on computer vision and pattern recognition, 2017, pp. 2117–2125.</p>
+<a id="ref19" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[19]</strong> Ultralytics, &quot;Ultralytics YOLOv8,&quot; 2023. [Online]. Available:
+<a href="https://github.com/ultralytics/ultralytics" target="_blank" rel="noopener noreferrer">https://github.com/ultralytics/ultralytics</a>.</p>
+<a id="ref20" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[20]</strong> C.-Y. Wang, H.-Y. M. Liao, Y.-H. Wu, P.-Y. Chen, J.-W. Hsieh, and I.-H.
+Yeh, &quot;CSPNet: A new backbone that can enhance learning capability of CNN,&quot; in
+Proceedings of the IEEE/CVF conference on computer vision and pattern
+recognition workshops, 2020, pp. 390–391.</p>
+<a id="ref21" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[21]</strong> C. Feichtenhofer, H. Fan, J. Malik, and K. He, &quot;Slowfast networks for
+video recognition,&quot; in Proceedings of the IEEE/CVF international conference on
+computer vision, 2019, pp. 6202–6211.</p>
+<a id="ref22" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[22]</strong> H. Jhuang, J. Gall, S. Zuffi, C. Schmid, and M. J. Black, &quot;Towards
+understanding action recognition,&quot; in Proceedings of the IEEE international
+conference on computer vision, 2013, pp. 3192–3199.</p>
+<a id="ref23" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[23]</strong> O. Köpüklü, X. Wei, and G. Rigoll, &quot;You only watch once: A unified cnn
+architecture for real-time spatiotemporal action localization,&quot; arXiv preprint
+arXiv:1911.06644, 2019.</p>
+<a id="ref24" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[24]</strong> S. Ren, K. He, R. Girshick, and J. Sun, &quot;Faster r-cnn: Towards
+real-time object detection with region proposal networks,&quot; Advances in neural
+information processing systems, vol. 28, 2015.</p>
+<a id="ref25" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[25]</strong> S. Xie, R. Girshick, P. Dollár, Z. Tu, and K. He, &quot;Aggregated residual
+transformations for deep neural networks,&quot; in Proceedings of the IEEE conference
+on computer vision and pattern recognition, 2017, pp. 1492–1500.</p>
+<a id="ref26" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[26]</strong> J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei,
+&quot;Imagenet: A large-scale hierarchical image database,&quot; in 2009 IEEE conference
+on computer vision and pattern recognition, 2009: Ieee, pp. 248–255.</p>
+<a id="ref27" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[27]</strong> T.-Y. Lin et al., &quot;Microsoft coco: Common objects in context,&quot; in
+Computer vision–ECCV 2014: 13th European conference, zurich, Switzerland,
+September 6-12, 2014, proceedings, part v 13, 2014: Springer, pp. 740–755.</p>
+<a id="ref28" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[28]</strong> R. Girshick, I. Radosavovic, G. Gkioxari, P. Dollar, and K. He,
+&quot;Detectron,&quot; 2011. [Online]. Available:
+<a href="https://github.com/facebookresearch/detectron" target="_blank" rel="noopener noreferrer">https://github.com/facebookresearch/detectron</a>.</p>
+<a id="ref29" style="display:block;padding-top:60px;margin-top:-60px"></a>
+<p><strong>[29]</strong> &quot;奧奇牌 TW-2700-E7K 測驗考試型雙輪發球機.&quot; [Online]. Available:
+<a href="https://www.ttta.com.tw/product.aspx?id=ff917306ee7f463a8d3ad7ab15eac9f2&amp;cid=90b746ba18f64c15a8f21a59cbb7fd14&amp;pcid=" target="_blank" rel="noopener noreferrer">https://www.ttta.com.tw/product.aspx?id=ff917306ee7f463a8d3ad7ab15eac9f2&amp;cid=90b746ba18f64c15a8f21a59cbb7fd14&amp;pcid=</a>.</p>
+<hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="相關程式碼">相關程式碼<a href="#相關程式碼" class="hash-link" aria-label="相關程式碼的直接連結" title="相關程式碼的直接連結">​</a></h2>
 <!-- -->
 <!-- -->
 <!-- -->
 <div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-our-proposed-method" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-our-proposed-method</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div>
-<div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-racket-segmentation" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-racket-segmentation</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/research"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">Introduction</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/research/Table-Tennis-Referee-System-Using-Multimodal-Deep-Learning"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">Table Tennis Referee System Using Multimodal Deep Learning</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究" class="table-of-contents__link toc-highlight">結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究</a></li><li><a href="#實驗結果table-tennis-stroke-dataset" class="table-of-contents__link toc-highlight">實驗結果（Table Tennis Stroke Dataset）</a></li><li><a href="#實驗結果jhmdb" class="table-of-contents__link toc-highlight">實驗結果（JHMDB）</a></li><li><a href="#摘要" class="table-of-contents__link toc-highlight">摘要</a></li><li><a href="#緒論" class="table-of-contents__link toc-highlight">緒論</a><ul><li><a href="#研究背景與動機" class="table-of-contents__link toc-highlight">研究背景與動機</a></li><li><a href="#多模態融合的必要性" class="table-of-contents__link toc-highlight">多模態融合的必要性</a></li><li><a href="#研究目標" class="table-of-contents__link toc-highlight">研究目標</a></li></ul></li><li><a href="#文獻回顧" class="table-of-contents__link toc-highlight">文獻回顧</a><ul><li><a href="#專用方法桌球擊球辨識基於-2d-姿態估計的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)</a></li><li><a href="#專用方法桌球擊球辨識基於雙分支時空卷積的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)</a></li><li><a href="#通用方法人類動作辨識基於骨架時序建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於骨架時序建模的方法)</a></li><li><a href="#通用方法人類動作辨識基於互動注意力建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於互動注意力建模的方法)</a></li></ul></li><li><a href="#研究方法" class="table-of-contents__link toc-highlight">研究方法</a><ul><li><a href="#物件分割模型" class="table-of-contents__link toc-highlight">物件分割模型</a></li><li><a href="#二維人體姿態估計模型" class="table-of-contents__link toc-highlight">二維人體姿態估計模型</a></li><li><a href="#yolov11" class="table-of-contents__link toc-highlight">YOLOv11</a></li><li><a href="#骨架時序導向動作識別模型" class="table-of-contents__link toc-highlight">骨架時序導向動作識別模型</a></li><li><a href="#雙模態導向動作識別模型" class="table-of-contents__link toc-highlight">雙模態導向動作識別模型</a></li></ul></li><li><a href="#實驗結果與討論" class="table-of-contents__link toc-highlight">實驗結果與討論</a><ul><li><a href="#實驗環境" class="table-of-contents__link toc-highlight">實驗環境</a></li><li><a href="#資料集" class="table-of-contents__link toc-highlight">資料集</a></li><li><a href="#評估標準" class="table-of-contents__link toc-highlight">評估標準</a></li><li><a href="#比較結果" class="table-of-contents__link toc-highlight">比較結果</a></li><li><a href="#桌球擊球資料集結果分析" class="table-of-contents__link toc-highlight">桌球擊球資料集結果分析</a></li><li><a href="#jhmdb-結果分析-1" class="table-of-contents__link toc-highlight">JHMDB 結果分析</a></li><li><a href="#球擊球資料集結果分析" class="table-of-contents__link toc-highlight">球擊球資料集結果分析</a></li></ul></li><li><a href="#相關程式碼" class="table-of-contents__link toc-highlight">相關程式碼</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://pda.104.com.tw/profile/preview?vno=75wef33ky" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
+<div style="border:1px solid #D0D7DE;border-radius:6px;background-color:#FFFFFF;padding:16px;font-size:14px;line-height:1.5;color:#24292E;margin:15px 0;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;"><div style="display:flex;align-items:center;margin-bottom:8px"><img src="/images/icon/hf-logo-pirate.svg" alt="Hugging Face Logo" style="width:20px;height:20px;margin-right:8px"><a href="https://huggingface.co/koteruon/table-tennis-stroke-recognition-racket-segmentation" target="_blank" rel="noopener noreferrer" style="font-weight:600;color:#0969DA;text-decoration:none">table-tennis-stroke-recognition-racket-segmentation</a></div><div style="font-size:12px;margin:8px 0;color:#57606A"></div><div style="font-size:12px;color:#57606A;display:flex;align-items:center"><span style="width:12px;height:12px;border-radius:100%;background-color:#DA5B0B;display:inline-block;margin-right:6px"></span>Pytorch Model</div></div></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/research"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">Introduction</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/research/Table-Tennis-Referee-System-Using-Multimodal-Deep-Learning"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">Table Tennis Referee System Using Multimodal Deep Learning</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究" class="table-of-contents__link toc-highlight">結合骨架時序轉換器與球拍幾何特徵之雙模態深度神經網路於桌球擊球動作辨識之研究</a></li><li><a href="#實驗結果table-tennis-stroke-dataset" class="table-of-contents__link toc-highlight">實驗結果（Table Tennis Stroke Dataset）</a></li><li><a href="#實驗結果jhmdb" class="table-of-contents__link toc-highlight">實驗結果（JHMDB）</a></li><li><a href="#摘要" class="table-of-contents__link toc-highlight">摘要</a></li><li><a href="#緒論" class="table-of-contents__link toc-highlight">緒論</a><ul><li><a href="#研究背景與動機" class="table-of-contents__link toc-highlight">研究背景與動機</a></li><li><a href="#多模態融合的必要性" class="table-of-contents__link toc-highlight">多模態融合的必要性</a></li><li><a href="#研究目標" class="table-of-contents__link toc-highlight">研究目標</a></li></ul></li><li><a href="#文獻回顧" class="table-of-contents__link toc-highlight">文獻回顧</a><ul><li><a href="#專用方法桌球擊球辨識基於-2d-姿態估計的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於 2D 姿態估計的方法)</a></li><li><a href="#專用方法桌球擊球辨識基於雙分支時空卷積的方法" class="table-of-contents__link toc-highlight">專用方法：桌球擊球辨識(基於雙分支時空卷積的方法)</a></li><li><a href="#通用方法人類動作辨識基於骨架時序建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於骨架時序建模的方法)</a></li><li><a href="#通用方法人類動作辨識基於互動注意力建模的方法" class="table-of-contents__link toc-highlight">通用方法：人類動作辨識(基於互動注意力建模的方法)</a></li></ul></li><li><a href="#研究方法" class="table-of-contents__link toc-highlight">研究方法</a><ul><li><a href="#物件分割模型" class="table-of-contents__link toc-highlight">物件分割模型</a></li><li><a href="#二維人體姿態估計模型" class="table-of-contents__link toc-highlight">二維人體姿態估計模型</a></li><li><a href="#yolov11" class="table-of-contents__link toc-highlight">YOLOv11</a></li><li><a href="#骨架時序導向動作識別模型" class="table-of-contents__link toc-highlight">骨架時序導向動作識別模型</a></li><li><a href="#雙模態導向動作識別模型" class="table-of-contents__link toc-highlight">雙模態導向動作識別模型</a></li></ul></li><li><a href="#實驗結果與討論" class="table-of-contents__link toc-highlight">實驗結果與討論</a><ul><li><a href="#實驗環境" class="table-of-contents__link toc-highlight">實驗環境</a></li><li><a href="#資料集" class="table-of-contents__link toc-highlight">資料集</a></li><li><a href="#評估標準" class="table-of-contents__link toc-highlight">評估標準</a></li><li><a href="#比較結果" class="table-of-contents__link toc-highlight">比較結果</a></li><li><a href="#桌球擊球資料集結果分析" class="table-of-contents__link toc-highlight">桌球擊球資料集結果分析</a></li><li><a href="#jhmdb-結果分析-1" class="table-of-contents__link toc-highlight">JHMDB 結果分析</a></li><li><a href="#球擊球資料集結果分析" class="table-of-contents__link toc-highlight">球擊球資料  集結果分析</a></li></ul></li><li><a href="#參考文獻" class="table-of-contents__link toc-highlight">參考文獻</a></li><li><a href="#相關程式碼" class="table-of-contents__link toc-highlight">相關程式碼</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://pda.104.com.tw/profile/preview?vno=75wef33ky" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
               <p>
               illustrations by <a href="https://storyset.com/web">Storyset</a>
               </p>

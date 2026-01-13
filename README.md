@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://koteruon.github.io/docs/notes"><strong>Backend Notes</strong></a> ·
+  <a href="https://koteruon.github.io/docs/notes"><strong>AI Engineering Notes</strong></a> ·
   <a href="https://koteruon.github.io/docs/research"><strong>Research</strong></a> ·
   <a href="https://koteruon.github.io/blog"><strong>Blog</strong></a>
 </p>
@@ -24,10 +24,10 @@
   <tr>
     <td align="center" width="33%">
       <a href="https://koteruon.github.io/docs/notes">
-        <img src="https://koteruon.github.io/images/homepage/notes.svg" alt="Backend Notes" height="80">
+        <img src="https://koteruon.github.io/images/homepage/notes.svg" alt="AI Engineering Notes" height="80">
       </a>
-      <h3><a href="https://koteruon.github.io/docs/notes">Backend Notes</a></h3>
-      <p>Insights on backend development, including design patterns and infrastructure topics like Docker and Kubernetes.</p>
+      <h3><a href="https://koteruon.github.io/docs/notes">AI Engineering Notes</a></h3>
+      <p>Insights on AI engineering and machine learning foundations, including system design, backend systems, and practical LLM infrastructure.</p>
     </td>
     <td align="center" width="33%">
       <a href="https://koteruon.github.io/docs/research">
@@ -51,7 +51,7 @@
 ## 🧭 Quick Links
 
 - 📚 Docs:
-  - Backend Notes → <a href="https://koteruon.github.io/docs/notes">/docs/notes</a>
+  - AI Engineering Notes → <a href="https://koteruon.github.io/docs/notes">/docs/notes</a>
   - Research → <a href="https://koteruon.github.io/docs/research">/docs/research</a>
 - 📝 Blog → <a href="https://koteruon.github.io/blog">/blog</a>
 

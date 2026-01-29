@@ -15,8 +15,8 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.42b2a4f7.css">
-<script src="/assets/js/runtime~main.5af1c45d.js" defer="defer"></script>
-<script src="/assets/js/main.799b72e2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.cc07911e.js" defer="defer"></script>
+<script src="/assets/js/main.248e8ac7.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -26,9 +26,9 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="影像輸入設計flatten-方法的問題與反思">影像輸入設計：Flatten 方法的問題與反思<a href="#影像輸入設計flatten-方法的問題與反思" class="hash-link" aria-label="影像輸入設計：Flatten 方法的問題與反思的直接連結" title="影像輸入設計：Flatten 方法的問題與反思的直接連結">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="基本步驟">基本步驟<a href="#基本步驟" class="hash-link" aria-label="基本步驟的直接連結" title="基本步驟的直接連結">​</a></h3>
 <ol>
-<li><strong>影像縮放 (Rescale)</strong>：將圖片統一成固定大小（如 100 × 100）,。</li>
+<li><strong>影像縮放 (Rescale)</strong>：將圖片統一成固定大小（如 100 × 100）。</li>
 <li><strong>獨熱向量 (One-hot Vector)</strong>：表示類別，維度長度決定可辨識的種類數量。</li>
-<li><strong>模型優化</strong>：通過 Softmax 後，追求預 測值與正確標籤間的 Cross Entropy 最小化。</li>
+<li><strong>模型優化</strong>：通過 Softmax 後，追求預  測值與正確標籤間的 Cross Entropy 最小化。</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="fully-connected-network-1" src="/assets/images/fully-connected-network-1-481f3560225f3297c2f59e87fb43b512.png" width="960" height="720" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="將圖片輸入到模型中">將圖片輸入到模型中<a href="#將圖片輸入到模型中" class="hash-link" aria-label="將圖片輸入到模型中的直接連結" title="將圖片輸入到模型中的直接連結">​</a></h3>

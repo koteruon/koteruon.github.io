@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-Hant" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-notes/hung-yi-lee-2025/how-language-models-learn-to-speak" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">語言模型如何學會說話 — 概述語音語言模型發展歷程 | Chao-En Huang</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://koteruon.github.io/images/icon/chao_en_huang_icon.png"><meta data-rh="true" name="twitter:image" content="https://koteruon.github.io/images/icon/chao_en_huang_icon.png"><meta data-rh="true" property="og:url" content="https://koteruon.github.io/docs/notes/hung-yi-lee-2025/how-language-models-learn-to-speak"><meta data-rh="true" property="og:locale" content="zh_Hant"><meta data-rh="true" name="docusaurus_locale" content="zh-Hant"><meta data-rh="true" name="docsearch:language" content="zh-Hant"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="語言模型如何學會說話 — 概述語音語言模型發展歷程 | Chao-En Huang"><meta data-rh="true" name="description" content="語音 vs. 文字 (Speech vs. Text)"><meta data-rh="true" property="og:description" content="語音 vs. 文字 (Speech vs. Text)"><link data-rh="true" rel="icon" href="/images/icon/favicon.ico"><link data-rh="true" rel="canonical" href="https://koteruon.github.io/docs/notes/hung-yi-lee-2025/how-language-models-learn-to-speak"><link data-rh="true" rel="alternate" href="https://koteruon.github.io/docs/notes/hung-yi-lee-2025/how-language-models-learn-to-speak" hreflang="zh-Hant"><link data-rh="true" rel="alternate" href="https://koteruon.github.io/docs/notes/hung-yi-lee-2025/how-language-models-learn-to-speak" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Chao-En Huang RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Chao-En Huang Atom Feed">
+
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script>window.dataLayer=window.dataLayer||[]</script>
+<script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-5X8N2TCV",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.42b2a4f7.css">
+<script src="/assets/js/runtime~main.9049e743.js" defer="defer"></script>
+<script src="/assets/js/main.0fefaa34.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳至主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳至主要内容</a></div><nav aria-label="主導航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="切換導覽列" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Chao-En</b></a><a class="navbar__item navbar__link" href="/about-me">About Me</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/notes">Notes</a><a class="navbar__item navbar__link" href="/docs/research">Research</a><a class="navbar__item navbar__link" href="/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="切換淺色/深色模式（當前為淺色模式）" aria-label="切換淺色/深色模式（當前為淺色模式）" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到頂部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文件側邊欄" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/notes">Introduction</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2021/machine-learning-basics">李宏毅機器學習 2021</a><button aria-label="展開側邊欄分類 &#x27;李宏毅機器學習 2021&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2024/what-is-generative-ai">李宏毅生成式AI 2024</a><button aria-label="展開側邊欄分類 &#x27;李宏毅生成式AI 2024&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/docs/notes/hung-yi-lee-2025/future-of-generative-ai">李宏毅生成式AI 2025</a><button aria-label="收起側邊欄分類 &#x27;李宏毅生成式AI 2025&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/future-of-generative-ai">生成式 AI 的技術突破與未來發展</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/principles-of-ai-agents">AI Agent 的定義與運作機制</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/inside-language-models">語言模型內部運作機制剖析</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/is-the-transformer-era-ending">Transformer 的時代要結束了嗎？介紹 Transformer 的競爭者們</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/power-and-limits-of-pretrain-alignment">大型語言模型訓練方法「預訓練–對齊」的強大與極限</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/post-training-and-forgetting">生成式人工智慧的後訓練 (Post-Training) 與遺忘問題</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/how-llms-perform-reasoning">DeepSeek-R1 這類大型語言模型是如何進行「深度思考」(Reasoning) 的？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/reasoning-length-is-not-everything">大型語言模型的推理過程不用太長、夠用就好</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/challenges-and-myths-of-llm-evaluation">大型語言模型評估 (Evaluation) 的挑戰與迷思</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/intro-to-model-editing">人工智慧的微創手術 — 淺談 Model Editing</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/hung-yi-lee-2025/an-introduction-to-model-merging">淺談神奇的 Model Merging 技術</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/notes/hung-yi-lee-2025/how-language-models-learn-to-speak">語言模型如何學會說話 — 概述語音語言模型發展歷  程</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/design-pattern">Design Patterns</a><button aria-label="展開側邊欄分類 &#x27;Design Patterns&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/docker-basics">Docker Basics</a><button aria-label="展開側邊欄分類 &#x27;Docker Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/kubernetes-basics">Kubernetes Basics</a><button aria-label="展開側邊欄分類 &#x27;Kubernetes Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/owasp-top10-2021">OWASP Top 10 (2021)</a><button aria-label="展開側邊欄分類 &#x27;OWASP Top 10 (2021)&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/ollama">Ollama</a><button aria-label="展開側邊欄分類 &#x27;Ollama&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="頁面路徑"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="主頁面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/docs/notes/hung-yi-lee-2025/future-of-generative-ai"><span itemprop="name">李宏毅生成式AI 2025</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">語言模型如何學會說話 — 概述語音語言模型發展歷程</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本頁導覽</button></div><div class="theme-doc-markdown markdown"><header><h1>語言模型如何學會說話 — 概述語音語言模型發展歷程</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="語音-vs-文字-speech-vs-text">語音 vs. 文字 (Speech vs. Text)<a href="#語音-vs-文字-speech-vs-text" class="hash-link" aria-label="語音 vs. 文字 (Speech vs. Text)的直接連結" title="語音 vs. 文字 (Speech vs. Text)的直接連結">​</a></h2>
+<p>要理解語音語言模型，首先要明白語音與文字的本質差異：</p>
+<ul>
+<li><strong>文字是語音的壓縮版本</strong>：<!-- -->
+<ul>
+<li>人類歷史上是先有語言（聲音），為了保存才發明文字。文字的發明本質上就是為了<strong>壓縮</strong>語音資訊，以便紀錄與傳承。</li>
+<li><strong>資訊密度差異</strong>：100 萬小時的語音資料，轉換成文字後大約只有 60 億 (6B) 個 Token。這顯示語音包含的資訊量遠大於文字，但也意味著訓練語音模型需要處理更龐大、更複雜的數據。</li>
+</ul>
+</li>
+<li><strong>資訊的不對稱</strong>：<!-- -->
+<ul>
+<li><strong>文字</strong>：僅保留了語意內容 (Semantic)。</li>
+<li><strong>語音</strong>：除了內容，還包含了<strong>語者身分 (Speaker Identity)</strong>、<strong>情緒 (Emotion)</strong>、<strong>韻律 (Prosody)</strong>、<strong>環境音 (Environment)</strong> 等豐富資訊。訓練 Speech LLM 的難點在於，模型不僅要學會語意，還得學會上述所有額外的聲學特徵。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="speech-vs-text" src="/assets/images/speech-vs-text-8e4fd0152e2facb294b3a3430bd4d28c.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="語音語言模型-speech-llm-發展現況">語音語言模型 (Speech LLM) 發展現況<a href="#語音語言模型-speech-llm-發展現況" class="hash-link" aria-label="語音語言模型 (Speech LLM) 發展現況的直接連結" title="語音語言模型 (Speech LLM) 發展現況的直接連結">​</a></h2>
+<ul>
+<li><strong>Moshi</strong>：最早真正釋出服務的語音語言模型（2024年10月）。</li>
+<li><strong>GPT-4o Voice Mode</strong>：雖早期有 Demo，但真正上線晚於 Moshi。</li>
+<li><strong>Sesame</strong>：目前互動最為流暢的模型之一。</li>
+<li>其他模型：GLM-4-Voice, Step-Audio, Qwen2.5-Omni 等  。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="speech-llm-example" src="/assets/images/speech-llm-example-dcceb5a8933ddcea6221560ad35f25a6.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="核心原理語音生成的基本單位-speech-token">核心原理：語音生成的基本單位 (Speech Token)<a href="#核心原理語音生成的基本單位-speech-token" class="hash-link" aria-label="核心原理：語音生成的基本單位 (Speech Token)的直接連結" title="核心原理：語音生成的基本單位 (Speech Token)的直接連結">​</a></h2>
+<p>語音模型的運作原理類似文字模型（接龍），關鍵在於<strong>如何將連續的聲音訊號轉換為離散的 Token</strong>。</p>
+<p><img decoding="async" loading="lazy" alt="speech-token" src="/assets/images/speech-token-4bb4272bcf9fbb04e14a5f96719a6d47.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="方法-aasr--tts-文字當-token">方法 A：ASR + TTS (文字當 Token)<a href="#方法-aasr--tts-文字當-token" class="hash-link" aria-label="方法 A：ASR + TTS (文字當 Token)的直接連結" title="方法 A：ASR + TTS (文字當 Token)的直接連結">​</a></h3>
+<ul>
+<li><strong>作法</strong>：語音辨識轉文字 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> LLM 處理 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> 語音合成唸出來。</li>
+<li><strong>缺點</strong>：會丟失語氣與情緒資訊。例如：「你真的好棒喔」若是反諷語氣，轉成文字後模型會誤以為是讚美，無法正確回應。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="asr-tts" src="/assets/images/asr-tts-46de57b2e8fd8208e0781e97277d7710.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="方法-bsample-points-取樣點當-token">方法 B：Sample Points (取樣點當 Token)<a href="#方法-bsample-points-取樣點當-token" class="hash-link" aria-label="方法 B：Sample Points (取樣點當 Token)的直接連結" title="方法 B：Sample Points (取樣點當 Token)的直接連結">​</a></h3>
+<ul>
+<li><strong>作法</strong>：直接將音訊的每個取樣點當作輸入。</li>
+<li><strong>缺點</strong>：序列過長。一秒鐘約 8000 個取樣點，講一分鐘需要產生 50 萬個 Token，現有模型難以負荷。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="sample-points" src="/assets/images/sample-points-8738118d879f87180c6f4d0cf9faf534.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="如何評估-token-的好壞-benchmarks">如何評估 Token 的好壞？ (Benchmarks)<a href="#如何評估-token-的好壞-benchmarks" class="hash-link" aria-label="如何評估 Token 的好壞？ (Benchmarks)的直接連結" title="如何評估 Token 的好壞？ (Benchmarks)的直接連結">​</a></h2>
+<p>由於訓練語音語言模型的算力成本極高，我們需要在正式訓練前，先透過 Benchmark 判斷 Tokenizer 的品質。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="codec-superb-基於重組音訊的評估">Codec-SUPERB (基於重組音訊的評估)<a href="#codec-superb-基於重組音訊的評估" class="hash-link" aria-label="Codec-SUPERB (基於重組音訊的評估)的直接連結" title="Codec-SUPERB (基於重組音訊的評估)的直接連結">​</a></h3>
+<p><strong>「還原後像不像？」</strong> 透過 <code>Tokenizer</code> 轉成 Token，再透過 <code>Detokenizer</code> 還原回聲音，檢查還原後的聲音品質。</p>
+<ul>
+<li><strong>評估方式</strong>：<!-- -->
+<ul>
+<li><strong>音質檢測</strong>：直接聽還原後的聲音是否失真。</li>
+<li><strong>下游任務檢測</strong>：將還原後的聲音丟進現有的模型（如 ASR 或 情緒辨識模型）。<!-- -->
+<ul>
+<li>若還原後的聲音<strong>無法被語音辨識 (ASR)</strong>，代表 Token 遺失了內容資訊。</li>
+<li>若還原後的聲音<strong>情緒辨識錯誤</strong>，代表 Token 遺失了語氣資訊。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dasb-基於-token-內涵的評估">DASB (基於 Token 內涵的評估)<a href="#dasb-基於-token-內涵的評估" class="hash-link" aria-label="DASB (基於 Token 內涵的評估)的直接連結" title="DASB (基於 Token 內涵的評估)的直接連結">​</a></h3>
+<p><strong>「Token 裡面有沒有料？」</strong> 省去還原成聲音的步驟，直接檢測 Token 本身包含多少資訊。</p>
+<ul>
+<li><strong>評估方式</strong>：<!-- -->
+<ul>
+<li>直接拿 <strong>離散 Token (Discrete Tokens)</strong> 去訓練一個小型的分類模型。</li>
+<li><strong>內容測試</strong>：若能用這組 Token 訓練出語音辨識系統，代表 Token 內含<strong>文字內容</strong>。</li>
+<li><strong>特徵測試</strong>：若能用這組 Token 訓練出情緒辨識系統，代表 Token 內含<strong>情緒資訊</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="benchmarks" src="/assets/images/benchmarks-5e91b108f4ae3999fc7dc213f687b9c1.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="產生-token-的兩大流派-tokenizer">產生 Token 的兩大流派 (Tokenizer)<a href="#產生-token-的兩大流派-tokenizer" class="hash-link" aria-label="產生 Token 的兩大流派 (Tokenizer)的直接連結" title="產生 Token 的兩大流派 (Tokenizer)的直接連結">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="tokenizer-types" src="/assets/images/tokenizer-types-c5ae8c998ebdd03c2d98ff484338d546.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="語音自監督式模型-self-supervised-learning-ssl">語音自監督式模型 (Self-Supervised Learning, SSL)<a href="#語音自監督式模型-self-supervised-learning-ssl" class="hash-link" aria-label="語音自監督式模型 (Self-Supervised Learning, SSL)的直接連結" title="語音自監督式模型 (Self-Supervised Learning, SSL)的直接連結">​</a></h3>
+<ul>
+<li><strong>別名</strong>：常被稱為 <strong>Semantic Token</strong>（但此名稱有誤導性，實際上更接近 KK 音標或聲學特徵，而非語言學上的語意）。</li>
+<li><strong>特性</strong>：偏向保留發音內容 (Phonetic) 資訊。</li>
+<li><strong>流程</strong>：<!-- -->
+<ol>
+<li><strong>特徵萃取 (Feature Extraction)</strong>：
+使用現成的 Self-Supervised Learning (SSL) Encoder（如 HuBERT 或 Wav2Vec）將輸入的語音訊號轉換為一連串的連續向量。通常設定為每 0.02 秒產生一個向量。</li>
+<li><strong>向量量化 (Vector Quantization)</strong>：
+透過 K-means 或其他分群演算法進行 Quantization，將相近的連續向量歸類為同一個 ID（Token）。此步驟將連續的語音訊號轉為離散的 Token 序列。</li>
+<li><strong>序列壓縮 (Sequence Compression)</strong>：
+為了縮短序列長度，通常會經過兩個處理：<!-- -->
+<ul>
+<li><strong>去重複 (Deduplication)</strong>：移除連續重複出現的 Token。</li>
+<li><strong>BPE (Byte Pair Encoding)</strong>：將常一起出現的 Token 組合（如 3 號接 2 號）合併成一個新的 Token ID，進一步壓縮序列長度。</li>
+</ul>
+</li>
+<li><strong>還原訓練 (Detokenizer Training)</strong>：
+上述步驟產生 Token 後，需另外訓練一個 Detokenizer（反向模型），目標是將這串離散 Token 還原回原始的聲音訊號，以確保資訊未嚴重流失。</li>
+</ol>
+</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="tokenizer-process" src="/assets/images/tokenizer-process-66c974ac4105104dac22d9c5e47e5cf4.png" width="1280" height="720" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="detokenizer-training" src="/assets/images/detokenizer-training-f748e0cac8b4b40f6af1b04ba2b31c40.png" width="1280" height="720" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>特徵萃取、向量量化、序列壓縮</strong></td><td style="text-align:center"><strong>訓練 Detokenizer 讓 Token 能還原回聲音</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="neural-speech-codec">Neural Speech Codec<a href="#neural-speech-codec" class="hash-link" aria-label="Neural Speech Codec的直接連結" title="Neural Speech Codec的直接連結">​</a></h3>
+<ul>
+<li><strong>別名</strong>：常被稱為 <strong>Acoustic Token</strong>。</li>
+<li><strong>作法</strong>：<!-- -->
+<ul>
+<li>類似 Autoencoder，同時訓練 Tokenizer (Encoder) 與 Detokenizer (Decoder)。</li>
+<li><strong>RVQ (Residual Vector Quantization)</strong>：一段聲音會抽出<strong>多組 Token</strong>（從粗到細），分別代表不同層次的資訊（內容、韻律、細節）。</li>
+</ul>
+</li>
+<li><strong>特性</strong>：保留較多聲學細節（音質、情緒）。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="neural-speech-codec" src="/assets/images/neural-speech-codec-0d9f7828e8d0e814bf0bb8f8ca5c88f8.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="生成策略如何處理多組-token">生成策略：如何處理多組 Token？<a href="#生成策略如何處理多組-token" class="hash-link" aria-label="生成策略：如何處理多組 Token？的直接連結" title="生成策略：如何處理多組 Token？的直接連結">​</a></h2>
+<p>由於 Neural Codec 會產生多層 Token（如 8 層），模型生成時需有特殊策略：</p>
+<p><img decoding="async" loading="lazy" alt="generation-strategy" src="/assets/images/generation-strategy-54ccd88e660a8c327c944b65f1c1f538.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="coarse-to-fine-由粗到細">Coarse-to-Fine (由粗到細)<a href="#coarse-to-fine-由粗到細" class="hash-link" aria-label="Coarse-to-Fine (由粗到細)的直接連結" title="Coarse-to-Fine (由粗到細)的直接連結">​</a></h3>
+<ul>
+<li><strong>運作邏輯</strong>：先產生所有的第一層 Token (Coarse, 通常代表語意內容)，全部生完後，再依序產生第二層、第三層...直到最細緻的 Token (Fine, 代表聲學細節)。
+<img decoding="async" loading="lazy" alt="coarse-to-fine-process" src="/assets/images/coarse-to-fine-process-f6ea8352fe0090f02f2c48ff44b0671d.png" width="1280" height="720" class="img_ev3q"></li>
+<li><strong>模型架構優化</strong>：<!-- -->
+<ul>
+<li><strong>第一層 (Coarse)</strong>：通常最難預測，需使用 <strong>Autoregressive (AR)</strong> 模型，品質高但速度慢。</li>
+<li><strong>後續層 (Fine)</strong>：因為已知內容，預測聲音細節相對簡單，可改用 <strong>Non-Autoregressive (NAR)</strong> 模型並行生成，以加快速度 (如 VALL-E, AudioLM 的策略)。</li>
+</ul>
+</li>
+<li><strong>缺點</strong>：<strong>難以做到 Streaming (即時串流)</strong>。因為必須等整句話的 Coarse Token 都生完才能開始生聲音細節，使用者會感受到明顯的延遲。.</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="coarse-to-fine-1" src="/assets/images/coarse-to-fine-1-27eecb35d56003bc6ee5a02da1e22d55.png" width="1280" height="720" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="coarse-to-fine-2" src="/assets/images/coarse-to-fine-2-7f67277e82b0d02dd9df3c651c7e6215.png" width="1280" height="720" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>先完成第一層 Token 再生第二層</strong></td><td style="text-align:center"><strong>難以做到 Streaming</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="interleaved--acoustic-delay-交錯生成">Interleaved / Acoustic Delay (交錯生成)<a href="#interleaved--acoustic-delay-交錯生成" class="hash-link" aria-label="Interleaved / Acoustic Delay (交錯生成)的直接連結" title="Interleaved / Acoustic Delay (交錯生成)的直接連結">​</a></h3>
+<ul>
+<li><strong>挑戰</strong>：若要講 5 分鐘的話，單層 Token 序列長度可能高達 3 萬 (30k)，對模型負荷極大。若每一步能同時產生多層 Token，可大幅縮短序列長度。
+<img decoding="async" loading="lazy" alt="coarse-fine-challenge" src="/assets/images/coarse-fine-challenge-bf25f70cb75489222b3d6f6085d000c4.png" width="1280" height="720" class="img_ev3q"></li>
+<li><strong>優勢</strong>：實現 <strong>Streaming</strong>。只要第一組完整的 Token (從粗到細) 產生出來，就能立刻送進 Detokenizer 發聲，無需等待整句講完。但有時候同時從粗到細生成會導致細節無法正確推論，需特別設計生成順序。
+<img decoding="async" loading="lazy" alt="acoustic-delay-streaming" src="/assets/images/acoustic-delay-streaming-49c75521c157b3ba663b46f3a27e0354.png" width="1280" height="720" class="img_ev3q"></li>
+<li><strong>實際作法 (Acoustic Delay)</strong>：<!-- -->
+<ul>
+<li>利用「細節依賴粗略」的特性，採取<strong>錯位生成</strong>。</li>
+<li>第 1 步：生 <code>Coarse_1</code>。</li>
+<li>第 2 步：生 <code>Coarse_2</code> + <code>Fine_1</code> (因 為有了 Coarse_1，才能推論 Fine_1)。</li>
+<li>第 3 步：生 <code>Coarse_3</code> + <code>Fine_2</code> + <code>Finest_1</code>。
+<img decoding="async" loading="lazy" alt="acoustic-delay" src="/assets/images/acoustic-delay-385f90bd976723727a67618dd086e696.png" width="1280" height="720" class="img_ev3q"></li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="多層-lm-架構-temporal-transformer--depth-transformer">多層 LM 架構 (Temporal Transformer &amp; Depth Transformer)<a href="#多層-lm-架構-temporal-transformer--depth-transformer" class="hash-link" aria-label="多層 LM 架構 (Temporal Transformer &amp; Depth Transformer)的直接連結" title="多層 LM 架構 (Temporal Transformer &amp; Depth Transformer)的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：將語音生成任務拆解，由兩個不同的 Transformer 分工合作，而非由單一模型處理所有維度。</li>
+<li><strong>分工運作</strong>：<!-- -->
+<ul>
+<li><strong>Temporal Transformer (時間)</strong>：負責處理<strong>時間軸</strong>的推進。它產生一個隱藏向量 (Vector) 傳遞給 Depth Transformer，告訴它「現在這個時間點大概要講什麼」。</li>
+<li><strong>Depth Transformer (深度)</strong>：負責處理<strong>層級細節</strong>。接收 Temporal 的向量後，負責在<strong>同一個時間點</strong>由粗到細生成該瞬間的所有 Token。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="multi-layer-lm" src="/assets/images/multi-layer-lm-e85d6154d0f94598eaceb32551e7b4ff.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="為什麼要用離散-discrete-token">為什麼要用離散 (Discrete) Token？<a href="#為什麼要用離散-discrete-token" class="hash-link" aria-label="為什麼要用離散 (Discrete) Token？的直接連結" title="為什麼要用離散 (Discrete) Token？的直接連結">​</a></h2>
+<p>儘管語音本質是連續訊號，且將其離散化會造成資訊損失，但在「生成（Generation）」任務中，離散 Token 具有優勢。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="連續向量的問題平均值災難-the-average-problem">連續向量的問題：平均值災難 (The Average Problem)<a href="#連續向量的問題平均值災難-the-average-problem" class="hash-link" aria-label="連續向量的問題：平均值災難 (The Average Problem)的直接連結" title="連續向量的問題：平均值災難 (The Average Problem)的直接連結">​</a></h3>
+<ul>
+<li><strong>情境</strong>：假設訓練資料中有兩種正確的唸法，對應到向量空間中的「綠色向量」與「藍色向量」。</li>
+<li><strong>模型行為</strong>：若強迫模型去預測連續數值，為了讓誤差（Loss）最小化，模型會傾向輸出這兩個向量的 <strong>「平均值」</strong>（介於綠色與藍色中間）。</li>
+<li><strong>後果</strong>：語音生成出的結果會變得模糊不清（Blurry），變成一個既不像開心、也不像生氣的「四不像」聲音。這在連續數值的預測中是非常常見的失敗模式。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="the-average-problem" src="/assets/images/the-average-problem-673f98026b7240b3690a8a161db5a784.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="離散-token-的解法機率分佈與抽樣-probability--sampling">離散 Token 的解法：機率分佈與抽樣 (Probability &amp; Sampling)<a href="#離散-token-的解法機率分佈與抽樣-probability--sampling" class="hash-link" aria-label="離散 Token 的解法：機率分佈與抽樣 (Probability &amp; Sampling)的直接連結" title="離散 Token 的解法：機率分佈與抽樣 (Probability &amp; Sampling)的直接連結">​</a></h3>
+<ul>
+<li><strong>訓練目標改變</strong>：使用離散 Token 時，我們不是教模型預測一個數值，而是教它預測一個 <strong>機率分佈 (Probability Distribution)</strong>。<!-- -->
+<ul>
+<li>例如：預測下一個 Token 是 A 的機率為 60%，是 B 的機率為 40%。</li>
+</ul>
+</li>
+<li><strong>Sampling (抽樣)</strong>：在推論 (Inference) 階段，我們透過 Sampling 來選擇輸出。<!-- -->
+<ul>
+<li>結果：模型要嘛選到 Token A，要嘛選到 Token B。<strong>它絕對不會輸出 A 與 B 的平均值</strong>。</li>
+</ul>
+</li>
+<li><strong>結論</strong>：這確保了模型生成的語音具有明確的特徵（明確的開心或明確的生氣），而非模糊的平均值，這就是為什麼人類最終選擇使用 Discrete Token 來訓練語音語言模型的核心理由。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="probability-and-sampling" src="/assets/images/probability-and-sampling-bcf51b40c2373adba332af3a74c6a3b8.png" width="1280" height="720" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>備註</div><div class="admonitionContent_BuS1"><p>雖然目前主流使用離散 Token，但若能設計特殊的 Loss Function（如在影像生成中常見的做法），強制模型只能輸出接近某一個正確答案而非平均值，理論上也可以使用連續向量來進行語音生成，這也是目前的研究方向之一。
+<img decoding="async" loading="lazy" alt="continuous-vector-solution" src="/assets/images/continuous-vector-solution-106b92df2efbd5324a4d79801b76a8e3.png" width="1280" height="720" class="img_ev3q"></p></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="語音合成-tts-的優異表現文字--語音-token">語音合成 (TTS) 的優異表現：文字 + 語音 Token<a href="#語音合成-tts-的優異表現文字--語音-token" class="hash-link" aria-label="語音合成 (TTS) 的優異表現：文字 + 語音 Token的直接連結" title="語音合成 (TTS) 的優異表現：文字 + 語音 Token的直接連結">​</a></h2>
+<ul>
+<li><strong>運作機制</strong>：現代成熟的語音合成模型（如聯發科的 Breezy Voice）可以同時接受兩類輸入：<!-- -->
+<ul>
+<li><strong>文字 (Text)</strong>：決定要唸出的「內容」。</li>
+<li><strong>語音 Token (Speech Prompt)</strong>：作為提示，決定聲音的「特質」（如音色、語氣、韻律）。</li>
+</ul>
+</li>
+<li><strong>成效</strong>：模型能根據輸入的語音 Token 模仿其特徵，將文字「唸出來」。目前的技術已能達到<strong>以假亂真</strong>的程度，聽眾在盲測中往往無法分辨哪一句是真人錄音，哪一句是 AI 合成。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="tts" src="/assets/images/tts-fcda7d3c6b73d885d2430503ca9a4770.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="與-speech-llm-的差異">與 Speech LLM 的差異<a href="#與-speech-llm-的差異" class="hash-link" aria-label="與 Speech LLM 的差異的直接連結" title="與 Speech LLM 的差異的直接連結">​</a></h3>
+<p>這類 TTS 模型僅負責「唸出給定的字」(Synthesis)，而不涉及「思考並產生回覆」(Generation)。雖然 TTS 表現極佳，但若直接用同樣的方法訓練 Speech LLM 做語音接龍，模型往往會產出缺乏邏輯的胡言亂語。</p>
+<p><img decoding="async" loading="lazy" alt="tts-vs-speech-llm" src="/assets/images/tts-vs-speech-llm-e5e9f8fa7577e646615f778e9cc1c43a.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="訓練挑戰資料量與初始化">訓練挑戰：資料量與初始化<a href="#訓練挑戰資料量與初始化" class="hash-link" aria-label="訓練挑戰：資料量與初始化的直接連結" title="訓練挑戰：資料量與初始化的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="資料不對等">資料不對等<a href="#資料不對等" class="hash-link" aria-label="資料不對等的直接連結" title="資料不對等的直接連結">​</a></h3>
+<ul>
+<li>100 萬小時的語音資料 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo></mrow><annotation encoding="application/x-tex">\approx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4831em"></span><span class="mrel">≈</span></span></span></span> 60 億 (6B) 文字 Token。</li>
+<li>相比之下，Llama-3 用了 15兆 (15T) 文字 Token 訓練。</li>
+<li><strong>結論</strong>：文字是語音的壓縮版，從零訓練語音模型極難。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="data-inequality" src="/assets/images/data-inequality-9688d0ae919700f8eeb454203040ef19.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="解法以文字模型初始化同時生成文字-token-和語音-token">解法：以文字模型初始化同時生成文字 Token 和語音 Token<a href="#解法以文字模型初始化同時生成文字-token-和語音-token" class="hash-link" aria-label="解法：以文字模型初始化同時生成文字 Token 和語音 Token的直接連結" title="解法：以文字模型初始化同時生成文字 Token 和語音 Token的直接連結">​</a></h3>
+<p>目前訓練語音語言模型的主流趨勢，並非從零開始，而是採用 <strong>Speech-Text Hybrid Generation</strong> 的策略，讓模型在說話時同時生成文字。</p>
+<p><img decoding="async" loading="lazy" alt="speech-text-hybrid-generation" src="/assets/images/speech-text-hybrid-generation-9d84561bd66087083d2280847a3fb11f.png" width="1280" height="720" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>站在巨人的肩膀上 (Initialization)</strong>：</p>
+<ul>
+<li>由於純語音訓練難度高，目前的做法通常是拿現成強大的 <strong>文字 LLM</strong>（如 Llama）作為語音模型的初始化參數。</li>
+<li>既然模型源自文字 LLM，它天生就具備生成文字的能力，我們不應丟棄這項技能。
+<img decoding="async" loading="lazy" alt="text-initialization" src="/assets/images/text-initialization-673ae665c1ce52c14224338b99444629.png" width="1280" height="720" class="img_ev3q"></li>
+</ul>
+</li>
+<li>
+<p><strong>內心獨白機制 (Internal Monologue)</strong>：</p>
+<ul>
+<li><strong>概念</strong>：讓語音模型在產生聲音的同時，也生成對應的文字。這些文字就像是模型的「內心獨白」或「草稿」。</li>
+<li><strong>功能</strong>：文字作為語音生成的輔助（Auxiliary），能讓模型在「說話」之前先「思考」大概要講什麼，使語音生成的表現更加穩定。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="speech-text-hybrid-generation">Speech-Text Hybrid Generation<a href="#speech-text-hybrid-generation" class="hash-link" aria-label="Speech-Text Hybrid Generation的直接連結" title="Speech-Text Hybrid Generation的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="text-then-speech-先寫稿再唸出">Text then Speech (先寫稿，再唸出)<a href="#text-then-speech-先寫稿再唸出" class="hash-link" aria-label="Text then Speech (先寫稿，再唸出)的直接連結" title="Text then Speech (先寫稿，再唸出)的直接連結">​</a></h3>
+<ul>
+<li><strong>作法</strong>：先讓模型把整段文字回應都生成完（打草稿），再根據生成的文字產生語音 Token（唸出來）。</li>
+<li><strong>優缺點</strong>：<!-- -->
+<ul>
+<li><strong>優點</strong>：最容易訓練且效果好，因為這本質上就是「文字生成 + TTS」，技術已很成熟。</li>
+<li><strong>缺點</strong>：<strong>延遲高</strong>。使用者必須等到整段文字都生成完才能聽到聲音，無法即時互動。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="text-then-speech-token-level-想一個字唸一個字">Text then Speech (Token-level) (想一個字，唸一個字)<a href="#text-then-speech-token-level-想一個字唸一個字" class="hash-link" aria-label="Text then Speech (Token-level) (想一個字，唸一個字)的直接連結" title="Text then Speech (Token-level) (想一個字，唸一個字)的直接連結">​</a></h3>
+<ul>
+<li><strong>作法</strong>：產生 1 個文字 Token <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> 產生對應的語音 Token <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> 再產生下一個文字 Token... 依此類推。</li>
+<li><strong>優缺點</strong>：<!-- -->
+<ul>
+<li><strong>優點</strong>：可以做到 <strong>Streaming (即時回應)</strong>，使用者幾乎不用等。</li>
+<li><strong>缺點</strong>：<strong>訓練資料難取得</strong>。  訓練時必須精確知道「哪一個文字 Token 對應到音訊的幾秒到幾秒 (Alignment)」，若對齊不準，模型效果會很差。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="text-then-speech" src="/assets/images/text-then-speech-8c8b3152c1fb11a5bedbd35680e1c304.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="text-and-speech-at-the-same-time-同步生成">Text and Speech at the Same Time (同步生成)<a href="#text-and-speech-at-the-same-time-同步生成" class="hash-link" aria-label="Text and Speech at the Same Time (同步生成)的直接連結" title="Text and Speech at the Same Time (同步生成)的直接連結">​</a></h3>
+<ul>
+<li><strong>作法</strong>：在每一步驟 (Step) 同時輸出一個文字 Token 和一個語音 Token。
+<img decoding="async" loading="lazy" alt="text-and-speech-at-the-same-time" src="/assets/images/text-and-speech-at-the-same-time-1d64bd6ab9f6b92d493418ba107b2867.png" width="1280" height="720" class="img_ev3q"></li>
+<li><strong>挑戰</strong>：<strong>長度不對等</strong>。語音序列通常比文字長很多（例如文字生完了，語音還有一大段），因此需要透過 <strong>Epsilon (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">ϵ</span></span></span></span>, 空集合符號)</strong> 來填補文字序列的空缺。</li>
+<li><strong>不同模型的解決策略</strong>：<!-- -->
+<ul>
+<li><strong>Mini-Omni</strong>：前面同步生成，等到文字 Token 生完後，文字端全部補 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">ϵ</span></span></span></span>，直到語音生成結束。</li>
+<li><strong>LLaMA-Omni (固定等待)</strong>：強制規定每生 1 個文字 Token，後面就補固定數量（如 3 個）的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">ϵ</span></span></span></span> 來等待語音跟上。但在複雜對應關係下可能不夠精準。</li>
+<li><strong>Moshi (自動預測)</strong>：讓模型<strong>自己預測</strong>每一步文字端需要補幾個 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">ϵ</span></span></span></span>（等多久），以動態配合語音的長度。
+<img decoding="async" loading="lazy" alt="text-and-speech-strategy" src="/assets/images/text-and-speech-strategy-2ddc9e28fa110e7459eab126433f75cd.png" width="1280" height="720" class="img_ev3q"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="創新技術taste-text-aligned-speech-tokenization">創新技術：TASTE (Text-Aligned Speech Tokenization)<a href="#創新技術taste-text-aligned-speech-tokenization" class="hash-link" aria-label="創新技術：TASTE (Text-Aligned Speech Tokenization)的直接連結" title="創新技術：TASTE (Text-Aligned Speech Tokenization)的直 接連結">​</a></h2>
+<p>針對語音與文字序列長度不一致且難以對齊的痛點，李宏毅實驗室提出了 <strong>TASTE</strong>，目標是實現「文字與語音 Token 的完美同步」。</p>
+<p><img decoding="async" loading="lazy" alt="TASTE" src="/assets/images/TASTE-a4b7a6458b358a5d830f18425bdeedf2.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="核心設計強制-1-對-1-對齊">核心設計：強制 1 對 1 對齊<a href="#核心設計強制-1-對-1-對齊" class="hash-link" aria-label="核心設計：強制 1 對 1 對齊的直接連結" title="核心設計：強制 1 對 1 對齊的直接連結">​</a></h3>
+<ul>
+<li><strong>解決痛點</strong>：傳統語音序列遠長於文字（1 秒約 50 個語音 Token vs 2-3 個文字 Token）。TASTE 強制讓 <strong>1 個文字 Token 精確對應 1 個語音 Token</strong>，消除長度差異。</li>
+<li><strong>去蕪存菁</strong>：因為模型同時擁有文字輸入，TASTE 的語音 Token <strong>不需要保留文字內容</strong>，只需專注儲存「<strong>怎麼唸</strong>」（語氣、情緒、速度）等聲學資訊。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="TASTE-core-design" src="/assets/images/TASTE-core-design-7e333cf80ee8323a0659efa77015bb65.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="運作機制aggregator-聚合器">運作機制：Aggregator (聚合器)<a href="#運作機制aggregator-聚合器" class="hash-link" aria-label="運作機制：Aggregator (聚合器)的直接連結" title="運作機制：Aggregator (聚合器)的直接連結">​</a></h3>
+<ul>
+<li>利用 <strong>Attention 機制</strong> 進行資訊萃取：<!-- -->
+<ul>
+<li><strong>Query (查詢)</strong>：來自 ASR 辨識出的「文字 Token」。</li>
+<li><strong>Key &amp; Value</strong>：來自語音 Encoder (SSL) 抽出的多層特徵向量。</li>
+</ul>
+</li>
+<li>模型根據文字 (Query) 去語音特徵 中「抓取」對應的聲學資訊，聚合出一個代表該字唸法的語音 Token。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="TASTE-aggregator" src="/assets/images/TASTE-aggregator-e75ea974850eca21c864a347013c0a23.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="還原與合成-detokenizer">還原與合成 (Detokenizer)<a href="#還原與合成-detokenizer" class="hash-link" aria-label="還原與合成 (Detokenizer)的直接連結" title="還原與合成 (Detokenizer)的直接連結">​</a></h3>
+<ul>
+<li>架構類似現先進的語音合成系統（如 CosyVoice）。</li>
+<li><strong>輸入</strong>：「文字 Token (決定內容)」 + 「語音 Token (決定風格)」。</li>
+<li><strong>輸出</strong>：還原回聲音訊號。這證實了語音 Token 確實扮演了「指導 TTS 如何發聲」的角色。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="TASTE-detokenizer" src="/assets/images/TASTE-detokenizer-f1e701a15654af97d4d57803273ad6ad.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="實驗驗證移花接木-style-swapping">實驗驗證：移花接木 (Style Swapping)<a href="#實驗驗證移花接木-style-swapping" class="hash-link" aria-label="實驗驗證：移花接木 (Style Swapping)的直接連結" title="實驗驗證：移花接木 (Style Swapping)的直接連結">​</a></h3>
+<ul>
+<li><strong>操作</strong>：將一段「唸得快」的語音 Token，替換到一段「唸得慢」的句子中對應的文字上。</li>
+<li><strong>結果</strong>：合成出的聲音在該片段<strong>變快了，但唸出的內容文字不變</strong>。</li>
+<li><strong>結論</strong>：證明 TASTE 的語音 Token 成功將「聲學風格（速度/語氣）」與「語意內容」分離，讓模型能更靈活地控制生成。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="TASTE-style-swapping" src="/assets/images/TASTE-style-swapping-7f8c6ded194e5f029325d0c9b3e7991c.png" width="1280" height="720" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="training-speech-llm從預訓練到對話">Training Speech LLM：從預訓練到對話<a href="#training-speech-llm從預訓練到對話" class="hash-link" aria-label="Training Speech LLM：從預訓練到對話的直接連結" title="Training Speech LLM：從預訓練到對話的直接連結">​</a></h2>
+<p>有了 Pre-trained 模型後，它只學會了「語音接龍」（給上半句接下半句），還不具備真正的對話互動能力。要讓模型學會與人互動，需遵循類似文字模型的訓練流程：<strong>SFT <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> RLHF</strong>。</p>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="training-speech-llm" src="/assets/images/training-speech-llm-ed2cb69319c7161ee218c8ea8b5121c9.png" width="1280" height="720" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="speech-continuation-demonstration" src="/assets/images/speech-continuation-demonstration-2649f26164e6ec249d2a00e00305e6f0.png" width="1280" height="720" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>模型學會語音接龍</strong></td><td style="text-align:center"><strong>但不具備真正的對話能力</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-監督式微調-supervised-fine-tuning-sft">1. 監督式微調 (Supervised Fine-Tuning, SFT)<a href="#1-監督式微調-supervised-fine-tuning-sft" class="hash-link" aria-label="1. 監督式微調 (Supervised Fine-Tuning, SFT)的直接連結" title="1. 監督式微調 (Supervised Fine-Tuning, SFT)的直接連結">​</a></h3>
+<ul>
+<li><strong>目標</strong>：教導模型如何針對輸入的語音給出合適的回應，而不僅僅是續寫句子。</li>
+<li><strong>資料來源的挑戰 (Forgetting Problem)</strong>：<!-- -->
+<ul>
+<li>若直接使用網路上爬取的真實人類對話錄音進行微調，容易發生 <strong>災難性遺忘 (Catastrophic Forgetting)</strong>。</li>
+<li>因為這些真實錄音的分布可能與初始化模型的文字能力不匹配，導致模型遺忘原本強大的文字理解能力。</li>
+</ul>
+</li>
+<li><strong>解決方案：合成資料 (Synthetic Data Pipeline)</strong>
+<ul>
+<li><strong>流程</strong>：利用強大的<strong>文字模型</strong>生成高品質的對話文本 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> 使用 <strong>TTS (語音合成)</strong> 將其唸出來 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em"></span><span class="mrel">→</span></span></span></span> 成為成對的訓練資料 (Audio-Text Pairs)。</li>
+<li><strong>優勢</strong>：確保對話內容的邏輯品質，同時保留文字模型的能力。</li>
+<li><strong>案例</strong>：Google 的 <strong>NotebookLM</strong> 生成 Podcast 的功能，極有可能就是採用此路徑（先生成文字對話稿，再用高品質 TTS 合成），而非端到端的語音模型直接生成。</li>
+</ul>
+</li>
+<li><strong>特定情境教學</strong>：<!-- -->
+<ul>
+<li>透過 SFT 可以教導模型聽懂「非語言」的聲音訊號。</li>
+<li><strong>例子</strong>：給模型聽「叮」的鐘聲，並教它這代表「課程結束/下課」；給模型聽「咳嗽聲」，教它回應「記得多喝水」。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="sft-nonverbal" src="/assets/images/sft-nonverbal-9aa4bac3a3deda964cf681e27f2aad21.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-增強式學習-rlhf--rlaif">2. 增強式學習 (RLHF &amp; RLAIF)<a href="#2-增強式學習-rlhf--rlaif" class="hash-link" aria-label="2. 增強式學習 (RLHF &amp; RLAIF)的直接連結" title="2. 增強式學習 (RLHF &amp; RLAIF)的直接連結">​</a></h3>
+<ul>
+<li><strong>RLHF (Reinforcement Learning from Human Feedback)</strong>：<!-- -->
+<ul>
+<li><strong>機制</strong>：模型產生多組語音回應，由人類標註者評價哪一組比較好。</li>
+<li><strong>評估重點的演變</strong>：<!-- -->
+<ul>
+<li><strong>早期 (約一年前)</strong>：主要關注 <strong>Quality (音質)</strong>，評估合成出來的聲音自不自然。</li>
+<li><strong>近期趨勢</strong>：轉向關注 <strong>Understanding (理解能力)</strong>，例如是否能正確辨識背景音樂、環境音、或語者的情緒狀態。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>RLAIF (AI Feedback)</strong>：<!-- -->
+<ul>
+<li>使用另一個 AI 模型來提供回饋。例如，讓文字模型去檢查語音模型生成的內容是否合理，以此作為訊號來強化語音模型。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="rlhf-rlaif" src="/assets/images/rlhf-rlaif-a9f395780d12aa8bcc429711bb2a06b4.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-未來挑戰全雙工對話-full-duplex">3. 未來挑戰：全雙工對話 (Full-Duplex)<a href="#3-未來挑 戰全雙工對話-full-duplex" class="hash-link" aria-label="3. 未來挑戰：全雙工對話 (Full-Duplex)的直接連結" title="3. 未來挑戰：全雙工對話 (Full-Duplex)的直接連結">​</a></h3>
+<ul>
+<li><strong>現狀：回合制 (Turn-based)</strong>
+<ul>
+<li>文字對話是典型的回合制：使用者輸入完畢按 Enter，模型才開始處理。界線非常明確。</li>
+</ul>
+</li>
+<li><strong>真實語音：全雙工 (Full-Duplex)</strong>
+<ul>
+<li>人類的對話是 <strong>邊聽邊說</strong> 的，包含大量的 <strong>重疊 (Overlap)</strong> 與 <strong>插話 (Interruption)</strong>。</li>
+<li>聽者在對方還沒講完時，可能就會發出聲音（如附和或打斷）。</li>
+</ul>
+</li>
+<li><strong>技術難點</strong>：<!-- -->
+<ul>
+<li>目前的 Autoregressive 模型通常設計為「先輸入再輸出」。要如何架構一個能同時處理輸入（聽）與輸出（說）的模型，是下一代 Speech LLM (如 Moshi, Dialogue GSLM) 的核心挑戰。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="full-duplex-challenge" src="/assets/images/full-duplex-challenge-52ba2eadec7922ad93eb2f707772d7a2.png" width="1280" height="720" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-安全性與評估-safety--evaluation">4. 安全性與評估 (Safety &amp; Evaluation)<a href="#4-安全性與評估-safety--evaluation" class="hash-link" aria-label="4. 安全性與評估 (Safety &amp; Evaluation)的直接連結" title="4. 安全性與評估 (Safety &amp; Evaluation)的直接連結">​</a></h3>
+<ul>
+<li><strong>評估維度的增加</strong>：<!-- -->
+<ul>
+<li><strong>文字模型</strong>：主要檢查輸出的文字內容是否安全（無毒、無偏見）。</li>
+<li><strong>語音模型</strong>：除了內容，還需檢查 <strong>語氣 (Paralinguistic information)</strong>。</li>
+<li><strong>風險案例</strong>：模型可能講出內容正常的句子（如「你好棒喔」），但配上 <strong>尖酸刻薄的 反諷語氣</strong>，這在語音互動中屬於不安全的行為，是傳統文字評估無法檢測的。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="safety-evaluation" src="/assets/images/safety-evaluation-22da188d8649bd6d63e1ffabf7e6b88c.png" width="1280" height="720" class="img_ev3q"></p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/notes/hung-yi-lee-2025/an-introduction-to-model-merging"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">淺談神奇的 Model Merging 技術</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/notes/design-pattern"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">Outline</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#語音-vs-文字-speech-vs-text" class="table-of-contents__link toc-highlight">語音 vs. 文字 (Speech vs. Text)</a></li><li><a href="#語音語言模型-speech-llm-發展現況" class="table-of-contents__link toc-highlight">語音語言模型 (Speech LLM) 發展現況</a></li><li><a href="#核心原理語音生成的基本單位-speech-token" class="table-of-contents__link toc-highlight">核心原理：語音生成的基本單位 (Speech Token)</a><ul><li><a href="#方法-aasr--tts-文字當-token" class="table-of-contents__link toc-highlight">方法 A：ASR + TTS (文字當 Token)</a></li><li><a href="#方法-bsample-points-取樣點當-token" class="table-of-contents__link toc-highlight">方法 B：Sample Points (取樣點當 Token)</a></li></ul></li><li><a href="#如何評估-token-的好壞-benchmarks" class="table-of-contents__link toc-highlight">如何評估 Token 的好壞？ (Benchmarks)</a><ul><li><a href="#codec-superb-基於重組音訊的評估" class="table-of-contents__link toc-highlight">Codec-SUPERB (基於重組音訊的評估)</a></li><li><a href="#dasb-基於-token-內涵的評估" class="table-of-contents__link toc-highlight">DASB (基於 Token 內涵的評估)</a></li></ul></li><li><a href="#產生-token-的兩大流派-tokenizer" class="table-of-contents__link toc-highlight">產生 Token 的兩大流派 (Tokenizer)</a><ul><li><a href="#語音自監督式模型-self-supervised-learning-ssl" class="table-of-contents__link toc-highlight">語音自監督式模型 (Self-Supervised Learning, SSL)</a></li><li><a href="#neural-speech-codec" class="table-of-contents__link toc-highlight">Neural Speech Codec</a></li></ul></li><li><a href="#生成策略如何處理多組-token" class="table-of-contents__link toc-highlight">生成策略：如何處理多組 Token？</a><ul><li><a href="#coarse-to-fine-由粗到細" class="table-of-contents__link toc-highlight">Coarse-to-Fine (由粗到細)</a></li><li><a href="#interleaved--acoustic-delay-交錯生成" class="table-of-contents__link toc-highlight">Interleaved / Acoustic Delay (交錯生成)</a></li><li><a href="#多層-lm-架構-temporal-transformer--depth-transformer" class="table-of-contents__link toc-highlight">多層 LM 架構 (Temporal Transformer &amp; Depth Transformer)</a></li></ul></li><li><a href="#為什麼要用離散-discrete-token" class="table-of-contents__link toc-highlight">為什麼要用離散 (Discrete) Token？</a><ul><li><a href="#連續向量的問題平均值災難-the-average-problem" class="table-of-contents__link toc-highlight">連續向量的問題：平均值災難 (The Average Problem)</a></li><li><a href="#離散-token-的解法機率分佈與抽樣-probability--sampling" class="table-of-contents__link toc-highlight">離散 Token 的解法：機率分佈與抽樣 (Probability &amp; Sampling)</a></li></ul></li><li><a href="#語音合成-tts-的優異表現文字--語音-token" class="table-of-contents__link toc-highlight">語音合成 (TTS) 的優異表現：文字 + 語音 Token</a><ul><li><a href="#與-speech-llm-的差異" class="table-of-contents__link toc-highlight">與 Speech LLM 的差異</a></li></ul></li><li><a href="#訓練挑戰資料量與初始化" class="table-of-contents__link toc-highlight">訓練挑戰：資料量與初始化</a><ul><li><a href="#資料不對等" class="table-of-contents__link toc-highlight">資料不對等</a></li><li><a href="#解法以文字模型初始化同時生成文字-token-和語音-token" class="table-of-contents__link toc-highlight">解法：以文字模型初始化同時生成文字 Token 和語音 Token</a></li></ul></li><li><a href="#speech-text-hybrid-generation" class="table-of-contents__link toc-highlight">Speech-Text Hybrid Generation</a><ul><li><a href="#text-then-speech-先寫稿再唸出" class="table-of-contents__link toc-highlight">Text then Speech (先寫稿，再唸出)</a></li><li><a href="#text-then-speech-token-level-想一個字唸一個字" class="table-of-contents__link toc-highlight">Text then Speech (Token-level) (想一個字，唸一個字)</a></li><li><a href="#text-and-speech-at-the-same-time-同步生成" class="table-of-contents__link toc-highlight">Text and Speech at the Same Time (同步生成)</a></li></ul></li><li><a href="#創新技術taste-text-aligned-speech-tokenization" class="table-of-contents__link toc-highlight">創新技術：TASTE (Text-Aligned Speech Tokenization)</a><ul><li><a href="#核心設計強制-1-對-1-對齊" class="table-of-contents__link toc-highlight">核心設計：強制 1 對 1 對齊</a></li><li><a href="#運作機制aggregator-聚合器" class="table-of-contents__link toc-highlight">運作機制：Aggregator (聚合器)</a></li><li><a href="#還原與合成-detokenizer" class="table-of-contents__link toc-highlight">還原與合成 (Detokenizer)</a></li><li><a href="#實驗驗證移花接木-style-swapping" class="table-of-contents__link toc-highlight">實驗驗證：移花接木 (Style Swapping)</a></li></ul></li><li><a href="#training-speech-llm從預訓練到對話" class="table-of-contents__link toc-highlight">Training Speech LLM：從預訓練到對話</a><ul><li><a href="#1-監督式微調-supervised-fine-tuning-sft" class="table-of-contents__link toc-highlight">1. 監督式微調 (Supervised Fine-Tuning, SFT)</a></li><li><a href="#2-增強式學習-rlhf--rlaif" class="table-of-contents__link toc-highlight">2. 增強式學習 (RLHF &amp; RLAIF)</a></li><li><a href="#3-未來挑戰全雙工對話-full-duplex" class="table-of-contents__link toc-highlight">3. 未來挑戰：全雙工對話 (Full-Duplex)</a></li><li><a href="#4-安全性與評估-safety--evaluation" class="table-of-contents__link toc-highlight">4. 安全性與評估 (Safety &amp; Evaluation)</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://profile.104.com.tw/profile/9f11e5a7-4d3b-4a21-9241-ba6e3f9003c8/about" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
+              <p>
+              illustrations by <a href="https://storyset.com/web">Storyset</a>
+              </p>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Chao-En Huang. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

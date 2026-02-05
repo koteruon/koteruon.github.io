@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-Hant" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-notes/yolo/outline" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">YOLO 的演進 | Chao-En Huang</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://blog.koteruon.com/images/icon/chao_en_huang_icon.png"><meta data-rh="true" name="twitter:image" content="https://blog.koteruon.com/images/icon/chao_en_huang_icon.png"><meta data-rh="true" property="og:url" content="https://blog.koteruon.com/docs/notes/yolo/outline"><meta data-rh="true" property="og:locale" content="zh_Hant"><meta data-rh="true" name="docusaurus_locale" content="zh-Hant"><meta data-rh="true" name="docsearch:language" content="zh-Hant"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="YOLO 的演進 | Chao-En Huang"><meta data-rh="true" name="description" content="innovation-matrix-across-yolo-generations"><meta data-rh="true" property="og:description" content="innovation-matrix-across-yolo-generations"><link data-rh="true" rel="icon" href="/images/icon/favicon.ico"><link data-rh="true" rel="canonical" href="https://blog.koteruon.com/docs/notes/yolo/outline"><link data-rh="true" rel="alternate" href="https://blog.koteruon.com/docs/notes/yolo/outline" hreflang="zh-Hant"><link data-rh="true" rel="alternate" href="https://blog.koteruon.com/docs/notes/yolo/outline" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Chao-En Huang RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Chao-En Huang Atom Feed">
+
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script>window.dataLayer=window.dataLayer||[]</script>
+<script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-5X8N2TCV",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.42b2a4f7.css">
+<script src="/assets/js/runtime~main.01fa9550.js" defer="defer"></script>
+<script src="/assets/js/main.ee6b3616.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳至主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳至主要内容</a></div><nav aria-label="主導航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="切換導覽列" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Chao-En</b></a><a class="navbar__item navbar__link" href="/about-me">About Me</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/notes">Notes</a><a class="navbar__item navbar__link" href="/docs/research">Research</a><a class="navbar__item navbar__link" href="/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="切換淺色/深色模式（當前為淺色模式）" aria-label="切換淺色/深色模式（當前為淺色模式）" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到頂部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文件側邊欄" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/notes">Introduction</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible menu__list-item-collapsible--active"><a class="menu__link menu__link--sublist menu__link--active" aria-current="page" href="/docs/notes/yolo/outline">YOLO 研究筆記</a><button aria-label="收起側邊欄分類 &#x27;YOLO 研究筆記&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/notes/yolo/outline">YOLO 的演進</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/yolo/backbone">Backbone</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2021/machine-learning-basics">李宏毅機器學習 2021</a><button aria-label="展開側邊欄分類 &#x27;李宏毅機器學習 2021&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2024/what-is-generative-ai">李宏毅生成式AI 2024</a><button aria-label="展開側邊欄分類 &#x27;李宏毅生成式AI 2024&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2025/future-of-generative-ai">李宏毅生成式AI 2025</a><button aria-label="展開側邊欄分類 &#x27;李宏毅生成式AI 2025&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/design-pattern">Design Patterns</a><button aria-label="展開側邊欄分類 &#x27;Design Patterns&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/docker-basics">Docker Basics</a><button aria-label="展開側邊欄分類 &#x27;Docker Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/kubernetes-basics">Kubernetes Basics</a><button aria-label="展開側邊欄分類 &#x27;Kubernetes Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/owasp-top10-2021">OWASP Top 10 (2021)</a><button aria-label="展開側邊欄分類 &#x27;OWASP Top 10 (2021)&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/ollama">Ollama</a><button aria-label="展開側邊欄分類 &#x27;Ollama&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="頁面路徑"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="主頁面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">YOLO 研究筆記</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本頁導覽</button></div><div class="theme-doc-markdown markdown"><header><h1>YOLO 的演進</h1></header>
+<p><img decoding="async" loading="lazy" alt="innovation-matrix-across-yolo-generations" src="/assets/images/innovation-matrix-across-yolo-generations-f99e8e700b614280be64fbfea6c93b28.png" width="1680" height="346" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="yolo-五大面向的設計演進">YOLO 五大面向的設計演進<a href="#yolo-五大面向的設計演進" class="hash-link" aria-label="YOLO 五大面向的設計演進的直接連結" title="YOLO 五大面向的設計演進的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="backbone">Backbone<a href="#backbone" class="hash-link" aria-label="Backbone的直接連結" title="Backbone的直接連結">​</a></h3>
+<ul>
+<li><strong>從分類 backbone 轉向 detection 導向設計</strong>
+<ul>
+<li>v1–v2 採用分類模型，速度快但表達力不足</li>
+<li>v3 引入 residual backbone 後，才真正支撐多尺  度特徵學習。</li>
+</ul>
+</li>
+<li><strong>CSP / ELAN 類結構的目的不是加深，而是讓深度可訓練</strong>
+<ul>
+<li>v4–v5 的 CSP 結構，改善梯度流動與計算效率問題。</li>
+<li>v7–v9 的 E-ELAN / GELAN，核心在減少冗餘計算、穩定梯度流動。</li>
+</ul>
+</li>
+<li><strong>後期重點放在單位參數效益，而非模型規模</strong>
+<ul>
+<li>v9–v11 更關注效率與穩定性，而非單純增加層數或參數量。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="neck--feature-fusion">Neck / Feature Fusion<a href="#neck--feature-fusion" class="hash-link" aria-label="Neck / Feature Fusion的直接連結" title="Neck / Feature Fusion的直接連結">​</a></h3>
+<ul>
+<li><strong>小物體問題主要靠 Neck 解，而不是單靠 Backbone</strong>
+<ul>
+<li>v1–v2 幾乎沒有融合機制，小物體表現受限；</li>
+<li>v3 才正式引入多尺度預測。</li>
+</ul>
+</li>
+<li><strong>PANet 讓多尺度不只是輸出，而是語意融合</strong>
+<ul>
+<li>v4 之後透過 top-down 與 bottom-up 路徑，使高階語意回流至低層特徵。</li>
+</ul>
+</li>
+<li><strong>後期設計強調特徵重用與一致性</strong>
+<ul>
+<li>v7、v9 的改進使 feature pyramid 成為可重複利用的語意結構，而非獨立層級。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="detection-head">Detection Head<a href="#detection-head" class="hash-link" aria-label="Detection Head的直接連結" title="Detection Head的直接連結">​</a></h3>
+<ul>
+<li><strong>早期 coupled head 簡單但限制了精度</strong>
+<ul>
+<li>分類與回歸共用特徵，隨著模型變深，任務衝突逐漸放大。</li>
+</ul>
+</li>
+<li><strong>Decoupled head 是精度提升的結構性轉折點</strong>
+<ul>
+<li>v6 起將 cls / reg 分離，使兩者可各自學習最適特徵。</li>
+</ul>
+</li>
+<li><strong>Head 設計開始為 end-to-end 架構服務</strong>
+<ul>
+<li>v8 的 anchor-free，先移除 heuristic，為 end-to-end 鋪路。</li>
+<li>v10 的 dual head，進一步移除後處理，實現 NMS-free。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="loss--label-assignment">Loss &amp; Label Assignment<a href="#loss--label-assignment" class="hash-link" aria-label="Loss &amp; Label Assignment的直接連結" title="Loss &amp; Label Assignment的直接連結">​</a></h3>
+<ul>
+<li><strong>Loss 演進對齊 bbox 幾何性質</strong>
+<ul>
+<li>從 L2 到 IoU-based，再到 DFL，逐步改善高 IoU 下的定位精度。</li>
+</ul>
+</li>
+<li><strong>動態 label assignment 提升 dense scene 穩定性</strong>
+<ul>
+<li>OTA / SimOTA 取代固定配對，讓正樣本選擇更合理。</li>
+</ul>
+</li>
+<li><strong>One-to-one 配對是 NMS-free 的前提</strong>
+<ul>
+<li>v10 的設計直接服務於端到端推論流程。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="training-strategies">Training Strategies<a href="#training-strategies" class="hash-link" aria-label="Training Strategies的直接連結" title="Training Strategies的直接連結">​</a></h3>
+<ul>
+<li><strong>YOLO 一貫把複雜度留在訓練階段</strong>
+<ul>
+<li>Mosaic、CutMix、SAT 等技巧提升泛化，但不增加 inference 成本。</li>
+</ul>
+</li>
+<li><strong>工程化訓練流程降低使用門檻</strong>
+<ul>
+<li>v5 的 auto-anchor 與超參數演化，讓模型更容易遷移到新資料集。</li>
+</ul>
+</li>
+<li><strong>Train / infer 分離是後期重要設計原則</strong>
+<ul>
+<li>RepConv、EMA 等技巧讓訓練受益於複雜結構，而推論保持高效率。</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="yolo-innovation-emphasis-radar-chart" src="/assets/images/yolo-innovation-emphasis-radar-chart-29d675e74f078f82a0d52e90dffb5269.png" width="743" height="631" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="yolo-中-anchor--nms-設計的演進">YOLO 中 Anchor / NMS 設計的演進<a href="#yolo-中-anchor--nms-設計的演進" class="hash-link" aria-label="YOLO 中 Anchor / NMS 設計的演進的直接連結" title="YOLO 中 Anchor / NMS 設計的演進的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="anchor-basedyolov2yolov7">Anchor-based（YOLOv2–YOLOv7）<a href="#anchor-basedyolov2yolov7" class="hash-link" aria-label="Anchor-based（YOLOv2–YOLOv7）的直接連結" title="Anchor-based（YOLOv2–YOLOv7）的直接連結">​</a></h3>
+<ul>
+<li><strong>核心思想</strong>
+<ul>
+<li>先假設「物件大概長什麼樣子」，再預測相對於這些假設（anchor）的偏移量。</li>
+</ul>
+</li>
+<li><strong>設計特徵</strong>
+<ul>
+<li>預先定義多組 anchor（或用 k-means 自動生成）</li>
+<li>每個 grid / feature point 對多個 anchor 做預測</li>
+<li>需要透過 <strong>NMS</strong> 移除重疊框</li>
+</ul>
+</li>
+<li><strong>優點</strong>
+<ul>
+<li>訓練穩定、直覺，對早期資料集非常有效</li>
+<li>在中大型物體上表現可靠</li>
+<li>長期實務驗證充分（YOLOv3–v7）</li>
+</ul>
+</li>
+<li><strong>缺點</strong>
+<ul>
+<li>anchor 設計本身是 <strong>人工假設</strong>，需要調參</li>
+<li>anchor 與 GT 尺寸不匹配時，定位與 recall 下降</li>
+<li>預測框數量多，後處理（NMS）成本高</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="anchor-freeyolov8yolov9">Anchor-free（YOLOv8–YOLOv9）<a href="#anchor-freeyolov8yolov9" class="hash-link" aria-label="Anchor-free（YOLOv8–YOLOv9）的直接連結" title="Anchor-free（YOLOv8–YOLOv9）的直接連結">​</a></h3>
+<ul>
+<li><strong>核心思想</strong>
+<ul>
+<li>不再預設物件形狀，直接從 feature map 的「點」出發，預測物件中心與尺寸。</li>
+</ul>
+</li>
+<li><strong>設計特徵</strong>
+<ul>
+<li>以 pixel / feature point 為基本單位</li>
+<li>預測 center、width、height（或距離邊界）</li>
+<li>不需要 anchor 設計，但 <strong>仍使用 NMS</strong></li>
+</ul>
+</li>
+<li><strong>優點</strong>
+<ul>
+<li>移除 anchor 設計與調參成本</li>
+<li>輸出空間更簡單，結構更乾淨</li>
+<li>對小物體與尺度變化更友善</li>
+</ul>
+</li>
+<li><strong>缺點</strong>
+<ul>
+<li>正負樣本定義變得困難</li>
+<li>對 label assignment 與超參數更敏感</li>
+<li>訓練穩定度高度依賴 SimOTA / 動態配對</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="nms-freeyolov10">NMS-free（YOLOv10）<a href="#nms-freeyolov10" class="hash-link" aria-label="NMS-free（YOLOv10）的直接連結" title="NMS-free（YOLOv10）的直接連結">​</a></h3>
+<ul>
+<li><strong>核心思想</strong>
+<ul>
+<li>如果訓練時就學會「只預測一個正確框」，推論時就不需要再刪框。</li>
+</ul>
+</li>
+<li><strong>設計特徵</strong>
+<ul>
+<li>訓練階段：One-to-many（學 recall）</li>
+<li>推論階段：One-to-one（保證唯一）</li>
+<li>完全移除 NMS</li>
+</ul>
+</li>
+<li><strong>優點</strong>
+<ul>
+<li>推論流程真正 end-to-end</li>
+<li>延遲更低，pipeline 更乾淨</li>
+<li>對即時與系統整合非常友善</li>
+</ul>
+</li>
+<li><strong>缺點</strong>
+<ul>
+<li>訓練與 assignment 設計複雜</li>
+<li>理解門檻高，除錯與調整不直覺</li>
+<li>對訓練品質要求高</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="loss-與-label-assignment-的演進">Loss 與 Label Assignment 的演進<a href="#loss-與-label-assignment-的演進" class="hash-link" aria-label="Loss 與 Label Assignment 的演進的直接連結" title="Loss 與 Label Assignment 的演進的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="loss-的演進">Loss 的演進<a href="#loss-的演進" class="hash-link" aria-label="Loss 的演進的直接連結" title="Loss 的演進的直接連結">​</a></h3>
+<ul>
+<li>
+<p><strong>早期（YOLOv1–v2）：L2 Loss，不符合幾何直覺</strong>
+將 bounding box 當作一般回歸問題處理，對位置與尺度的誤差敏感度不一致，導致定位精度受限。</p>
+</li>
+<li>
+<p><strong>中期（YOLOv3–v5）：IoU-based Loss 對齊評估指標</strong>
+引入 IoU / GIoU / CIoU，使訓練目標與 mAP 評估方式一致，定位品質明顯提升，但在高 IoU 區間仍有限。</p>
+</li>
+<li>
+<p><strong>後期（YOLOv7–v9）：DFL 以分佈方式學定位</strong>
+不再回歸單一座標，而是學習位置分佈，使模型在高 IoU（精細定位）下表現更穩定，特別有利於小物體與密集場景。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="label-assignment-的演進">Label Assignment 的演進<a href="#label-assignment-的演進" class="hash-link" aria-label="Label Assignment 的演進的直接連結" title="Label Assignment 的演進的直接連結">​</a></h3>
+<ul>
+<li>
+<p><strong>固定配對（早期 YOLO）限制模型學習</strong>
+使用 greedy 或 IoU threshold 決定正樣本，對尺度變化與密集物體不友善，容易產生誤配。</p>
+</li>
+<li>
+<p><strong>動態配對（YOLOv6–v9）提升訓練穩定性</strong>
+OTA / SimOTA 根據預測品質動態決定正樣本數量，使正負樣本分佈更合理，dense scene 下的 recall 與穩定度明顯改善。</p>
+</li>
+<li>
+<p><strong>One-to-one 配對（YOLOv10）服務於 NMS-free</strong>
+明確限制一個 GT 只對應一個 prediction，讓模型在推論階段天然輸出唯一結果，成為移除 NMS 的關鍵前提。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="loss--assignment-的關係">Loss × Assignment 的關係<a href="#loss--assignment-的關係" class="hash-link" aria-label="Loss × Assignment 的關係的直接連結" title="Loss × Assignment 的關係的直接連結">​</a></h3>
+<ul>
+<li><strong>Loss 決定「怎麼懲罰錯誤」</strong></li>
+<li><strong>Assignment 決定「哪些錯誤值得被懲罰」</strong></li>
+<li>後期 YOLO 的提升，來自兩者<strong>同時演進，而非單獨改其中一個</strong></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="實務部署觀點">實務部  署觀點<a href="#實務部署觀點" class="hash-link" aria-label="實務部署觀點的直接連結" title="實務部署觀點的直接連結">​</a></h2>
+<ul>
+<li><strong>即時性是 YOLO 的第一設計約束</strong>
+<ul>
+<li>YOLO 的面向是即時應用，single-stage 與單次 forward 是所有設計的前提。</li>
+</ul>
+</li>
+<li><strong>推論延遲的穩定性比極限 mAP 更重要</strong>
+<ul>
+<li>實務場景關心的是 latency 是否可預期，而非只在 benchmark 上表現最好。</li>
+</ul>
+</li>
+<li><strong>後處理本身會成為部署瓶頸</strong>
+<ul>
+<li>Anchor-based + NMS 在 edge 或低功耗裝置上帶來額外延遲與實作負擔。</li>
+</ul>
+</li>
+<li><strong>設計趨勢是把 heuristic 移出 inference</strong>
+<ul>
+<li>從 anchor-based → anchor-free → NMS-free，逐步將人工規則轉為模型可學習部分。</li>
+</ul>
+</li>
+<li><strong>複雜度被刻意轉移到訓練階段</strong>
+<ul>
+<li>更複雜的 loss、label assignment 與訓練策略，換取推論流程的簡潔與穩定。</li>
+</ul>
+</li>
+<li><strong>端到端推論有利於系統整合</strong>
+<ul>
+<li>NMS-free 設計讓 pipeline 更乾淨，對即時系統與產品化特別重要。</li>
+</ul>
+</li>
+<li><strong>跨平台與可擴展性是實務關鍵指標</strong>
+<ul>
+<li>模型是否容易 export、是否能在 server 與 edge 間縮放，影響實際採用度。</li>
+</ul>
+</li>
+<li><strong>後期 YOLO 明確偏向工業部署導向</strong>
+<ul>
+<li>YOLOv6 以後的設計，更重視 latency、穩定性與部署可控性，而非單純追求 SOTA。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="yolo-的擴展任務">YOLO 的擴展任務<a href="#yolo-的擴展任務" class="hash-link" aria-label="YOLO 的擴展任務的直接連結" title="YOLO 的擴展任務的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="instance-segmentation">Instance Segmentation<a href="#instance-segmentation" class="hash-link" aria-label="Instance Segmentation的直接連結" title="Instance Segmentation的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：在 bounding box 之外，進一步預測每個物體的像素級遮罩</li>
+<li><strong>做法</strong>：共享 backbone 與 neck，額外加上 segmentation head</li>
+<li><strong>代表版本 / 分支</strong>：YOLOv8-seg、YOLOv11-seg</li>
+<li><strong>優勢</strong>：比 Mask R-CNN 更快，適合即時場景（如工業檢測、醫療影像）</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="instance-segmentation" src="/assets/images/instance-segmentation-86ae4b7766c5d926bbb424216aa9eda2.png" width="1343" height="755" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pose-estimation">Pose Estimation<a href="#pose-estimation" class="hash-link" aria-label="Pose Estimation的直接連結" title="Pose Estimation的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：同時偵測人與其關鍵點（keypoints）</li>
+<li><strong>技術重點</strong>：Detection head 改為輸出關鍵點座標與置信度</li>
+<li><strong>代表版本</strong>：YOLOv7-Pose、YOLOv8-Pose、YOLOv11-Pose</li>
+<li><strong>應用</strong>：人體動作分析、運動科學、行為辨識</li>
+<li><strong>特色</strong>：保持 YOLO 一貫的即時性，適合影片串流</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="pose-estimation" src="/assets/images/pose-estimation-e7f8016ac34ea75644c02a7c6e012ea8.png" width="1345" height="579" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="object-tracking">Object Tracking<a href="#object-tracking" class="hash-link" aria-label="Object Tracking的直接連結" title="Object Tracking的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：在影片中維持物體 ID，形成時序軌跡</li>
+<li><strong>常見做法</strong>：YOLO + tracker（如 SORT / DeepSORT / ByteTrack）</li>
+<li><strong>優勢</strong>：YOLO 提供高速且穩定的 detection，降低 tracking drift</li>
+<li><strong>應用</strong>：監控、交通分析、行人計數</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="object-tracking" src="/assets/images/object-tracking-53e3ab7b975cde60ebbf3a30882ec970.png" width="682" height="192" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="oriented-object-detection">Oriented Object Detection<a href="#oriented-object-detection" class="hash-link" aria-label="Oriented Object Detection的直接連結" title="Oriented Object Detection的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：預測旋轉 bounding box，而非水平框</li>
+<li><strong>輸出形式</strong>：中心點 + 寬高 + 角度</li>
+<li><strong>應用場景</strong>：航照影像、文件分析、工業零件</li>
+<li><strong>代表</strong>：YOLO-OBB、YOLOv11 OBB head</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="oriented-object-detection" src="/assets/images/oriented-object-detection-f0d3a561548765eed3ac0a7f6ba926fe.png" width="640" height="360" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="multi-task-learning">Multi-task Learning<a href="#multi-task-learning" class="hash-link" aria-label="Multi-task Learning的直接連結" title="Multi-task Learning的直接連結">​</a></h3>
+<ul>
+<li><strong>核心概念</strong>：單一模型同時支援 detection、segmentation、pose 等任務</li>
+<li><strong>關鍵設計</strong>：共享 backbone / neck，不同 task 專屬 head</li>
+<li><strong>代表版本</strong>：YOLOv8、YOLOv11</li>
+<li><strong>好處</strong>：<!-- -->
+<ul>
+<li>降低模型數量與部署成本</li>
+<li>有利於 edge device 與即時系統</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="multi-task-learning" src="/assets/images/multi-task-learning-813b367c4e8012601335e5f4dc85d18d.png" width="1920" height="541" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="transformer-based-designs">Transformer-based Designs<a href="#transformer-based-designs" class="hash-link" aria-label="Transformer-based Designs的直接連結" title="Transformer-based Designs的直接連結">​</a></h3>
+<ul>
+<li><strong>做法</strong>：在 backbone 或 head 中引入 transformer</li>
+<li><strong>目的</strong>：提升全域關係建模能力（long-range dependency）</li>
+<li><strong>取捨</strong>：<!-- -->
+<ul>
+<li>準確率 ↑</li>
+<li>延遲與算力需求 ↑</li>
+</ul>
+</li>
+<li><strong>適合場景</strong>：伺服器端、非即時任務</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="robustness-and-adaptation">Robustness and Adaptation<a href="#robustness-and-adaptation" class="hash-link" aria-label="Robustness and Adaptation的直接連結" title="Robustness and Adaptation的直接連結">​</a></h3>
+<ul>
+<li><strong>Semi-supervised YOLO</strong>：使用 pseudo-label 降低標註成本</li>
+<li><strong>Domain Adaptation YOLO</strong>：處理資料分佈落差（如 synthetic → real）</li>
+<li><strong>Robust YOLO</strong>：對抗噪聲、遮擋與 adversarial attack</li>
+<li><strong>動機</strong>：讓 YOLO 能「真正進到現實世界跑」</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="挑戰與未來方向">挑戰與未來方向<a href="#挑戰與未來方向" class="hash-link" aria-label="挑戰與未來方向的直接連結" title="挑戰與未來方向的直接連結">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="challenges">Challenges<a href="#challenges" class="hash-link" aria-label="Challenges的直接連結" title="Challenges的直接連結">​</a></h3>
+<ul>
+<li><strong>小物件偵測仍是弱點</strong>
+<ul>
+<li>即使引入多尺度預測與先進 backbone（如 YOLOv9 的 GELAN），對於遠距、密集、低解析度的小物件，YOLO 仍明顯落後於部分兩階段模型。</li>
+</ul>
+</li>
+<li><strong>高 IoU 下的定位精度不足</strong>
+<ul>
+<li>YOLO 在 IoU=0.5 表現良好，但在 IoU=0.75 以上精細定位仍偏弱，反映 bounding box 回歸與特徵解析度  的結構性限制。</li>
+</ul>
+</li>
+<li><strong>訓練流程日益複雜、對超參數敏感</strong>
+<ul>
+<li>SimOTA、EMA、動態 label assignment 與多種 augmentation 雖提升效果，但也提高了訓練不穩定性與重現難度。</li>
+</ul>
+</li>
+<li><strong>訓練成本高、門檻上升</strong>
+<ul>
+<li>高階版本（如 YOLOv7-E6E、YOLOv9-L）在訓練階段對 GPU 資源需求大，對小型團隊與 edge 開發者不友善。</li>
+</ul>
+</li>
+<li><strong>跨領域泛化能力有限</strong>
+<ul>
+<li>在醫療、農業、空拍等 domain shift 場景，YOLO 往往需要大量再訓練才能維持效能。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="future-directions">Future Directions<a href="#future-directions" class="hash-link" aria-label="Future Directions的直接連結" title="Future Directions的直接連結">​</a></h3>
+<ul>
+<li><strong>往 NMS-free、真正 end-to-end 發展</strong>
+<ul>
+<li>YOLOv10 已展示移除 NMS 的可行性，未來將朝向可微分、可學習的後處理，簡化整體推論流程。</li>
+</ul>
+</li>
+<li><strong>更聰明的 Label Assignment 機制</strong>
+<ul>
+<li>透過動態匹配、梯度導向或 transformer-based matching，改善收斂穩定性與密集場景表現。</li>
+</ul>
+</li>
+<li><strong>Self-supervised / Few-shot 能力強化</strong>
+<ul>
+<li>引入自監督學習與少樣本學習，降低對大量標註資料的依賴，提升實務可擴展性。</li>
+</ul>
+</li>
+<li><strong>Vision–Language 與跨模態整合</strong>
+<ul>
+<li>結合 CLIP、Vision-Language Model，使 YOLO 支援 open-vocabulary、文字導向偵測等新任務。</li>
+</ul>
+</li>
+<li><strong>Edge 導向的壓縮與部署最佳化</strong>
+<ul>
+<li>持續發展 pruning、量化、蒸餾與 NAS，讓 YOLO 在低功耗裝置上仍具競爭力。</li>
+</ul>
+</li>
+<li><strong>朝多任務統一感知系統演進</strong>
+<ul>
+<li>將 detection、segmentation、pose、tracking 整合於共享 backbone，降低系統複雜度。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="yolov1yolov11-簡介">YOLOv1–YOLOv11 簡介<a href="#yolov1yolov11-簡介" class="hash-link" aria-label="YOLOv1–YOLOv11 簡介的直接連結" title="YOLOv1–YOLOv11 簡介的直接連結">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="comparision-of-yolo-models" src="/assets/images/comparision-of-yolo-models-6d370368ef572966d99dfa8cd34a5588.png" width="1676" height="423" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov1single-stage-的可行性驗證">YOLOv1｜Single-Stage 的可行性驗證<a href="#yolov1single-stage-的可行性驗證" class="hash-link" aria-label="YOLOv1｜Single-Stage 的可行性驗證的直接連結" title="YOLOv1｜Single-Stage 的可行性驗證的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2016</li>
+<li><strong>核心思想</strong>：把 object detection 視為單一 regression 問題，一次 forward 完成所有預測</li>
+<li><strong>設計特徵</strong>：固定 grid、無 anchor、無多尺度</li>
+<li><strong>優點</strong>：推論速度極快，具備全域視野</li>
+<li><strong>缺點</strong>：定位不準，小物體與密集物體表現極差</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov2讓-yolo-變得像個-detector">YOLOv2｜讓 YOLO 變得「像個 detector」<a href="#yolov2讓-yolo-變得像個-detector" class="hash-link" aria-label="YOLOv2｜讓 YOLO 變得「像個 detector」的直接連結" title="YOLOv2｜讓 YOLO 變得「像個 detector」的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2017</li>
+<li><strong>核心思想</strong>：在保留速度下，補強定位與尺度泛化能力</li>
+<li><strong>設計特徵</strong>：Anchor boxes、k-means anchor、multi-scale training、YOLO9000</li>
+<li><strong>優點</strong>：準度與速度同步提升，模型更實用</li>
+<li><strong>缺點</strong>：小物體仍有限，anchor 開始帶來設計成本</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov3多尺度輸出解決小物體">YOLOv3｜多尺度輸出解決小物體<a href="#yolov3多尺度輸出解決小物體" class="hash-link" aria-label="YOLOv3｜多尺度輸出解決小物體的直接連結" title="YOLOv3｜多尺度輸出解決小物體的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2018</li>
+<li><strong>核心思想</strong>：用多尺度特徵正面解決小物體問題</li>
+<li><strong>設計特徵</strong>：Darknet-53、三層輸出、sigmoid 獨立分類</li>
+<li><strong>優點</strong>：小物體表現顯著改善，穩定耐用</li>
+<li><strong>缺點</strong>：高 IoU 下定位精度不足</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov4training-trick-的集大成">YOLOv4｜Training Trick 的集大成<a href="#yolov4training-trick-的集大成" class="hash-link" aria-label="YOLOv4｜Training Trick 的集大成的直接連結" title="YOLOv4｜Training Trick 的集大成的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2020</li>
+<li><strong>核心思想</strong>：不增加推論成本，用訓練技巧榨出效能</li>
+<li><strong>設計特徵</strong>：CSPDarknet、PANet、SPP、Mosaic、CutMix、SAT</li>
+<li><strong>優點</strong>：當時 one-stage SOTA，速度與準度兼具</li>
+<li><strong>缺點</strong>：系統與訓練流程複雜，可重現性差</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov5yolo-的產品化轉折">YOLOv5｜YOLO 的產品化轉折<a href="#yolov5yolo-的產品化轉折" class="hash-link" aria-label="YOLOv5｜YOLO 的產品化轉折的直接連結" title="YOLOv5｜YOLO 的產品化轉折的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2020</li>
+<li><strong>核心思想</strong>：將 YOLO 工程化、產品化</li>
+<li><strong>設計特徵</strong>：PyTorch、s/m/l/x 模型縮放、AutoAnchor、完整 export</li>
+<li><strong>優點</strong>：訓練與部署體驗極佳，生態系完整</li>
+<li><strong>缺點</strong>：  演算法層面創新有限</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov6工業與-edge-導向設計">YOLOv6｜工業與 Edge 導向設計<a href="#yolov6工業與-edge-導向設計" class="hash-link" aria-label="YOLOv6｜工業與 Edge 導向設計的直接連結" title="YOLOv6｜工業與 Edge 導向設計的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2022</li>
+<li><strong>核心思想</strong>：為工業與 edge 場景優化 YOLO</li>
+<li><strong>設計特徵</strong>：Decoupled head、RepConv、支援 anchor-free</li>
+<li><strong>優點</strong>：低延遲、高效率，適合商用部署</li>
+<li><strong>缺點</strong>：訓練設定較複雜，學術影響力較低</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov7cnn-架構下的效能巔峰">YOLOv7｜CNN 架構下的效能巔峰<a href="#yolov7cnn-架構下的效能巔峰" class="hash-link" aria-label="YOLOv7｜CNN 架構下的效能巔峰的直接連結" title="YOLOv7｜CNN 架構下的效能巔峰的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2022</li>
+<li><strong>核心思想</strong>：在 CNN 架構下最大化即時偵測效能</li>
+<li><strong>設計特徵</strong>：E-ELAN、RepPAN、coarse-to-fine head</li>
+<li><strong>優點</strong>：速度與準度同時達到高峰</li>
+<li><strong>缺點</strong>：架構與訓練流程複雜</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov8全面轉向-anchor-free">YOLOv8｜全面轉向 Anchor-Free<a href="#yolov8全面轉向-anchor-free" class="hash-link" aria-label="YOLOv8｜全面轉向 Anchor-Free的直接連結" title="YOLOv8｜全面轉向 Anchor-Free的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2023</li>
+<li><strong>核心思想</strong>：全面簡化設計，正式轉向 anchor-free</li>
+<li><strong>設計特徵</strong>：Anchor-free head、統一多任務（det / seg / pose）</li>
+<li><strong>優點</strong>：訓練穩定，小物體定位更好</li>
+<li><strong>缺點</strong>：對超參數較敏感</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov9精緻化特徵與訓練目標">YOLOv9｜精緻化特徵與訓練目標<a href="#yolov9精緻化特徵與訓練目標" class="hash-link" aria-label="YOLOv9｜精緻化特徵與訓練目標的直接連結" title="YOLOv9｜精緻化特徵與訓練目標的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2024</li>
+<li><strong>核心思想</strong>：在 v8 架構上精緻化特徵與訓練目標</li>
+<li><strong>設計特徵</strong>：GELAN backbone、DFL v2、改良 SimOTA</li>
+<li><strong>優點</strong>：準度與效率穩定提升，dense scene 表現佳</li>
+<li><strong>缺點</strong>：訓練成本偏高，工具鏈仍在成長</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov10nms-free-的端到端偵測">YOLOv10｜NMS-Free 的端到端偵測<a href="#yolov10nms-free-的端到端偵測" class="hash-link" aria-label="YOLOv10｜NMS-Free 的端到端偵測的直接連結" title="YOLOv10｜NMS-Free 的端到端偵測的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2024</li>
+<li><strong>核心思想</strong>：移除 NMS，走向真正 end-to-end detector</li>
+<li><strong>設計特徵</strong>：One-to-many（訓練）＋ One-to-one（推論）</li>
+<li><strong>優點</strong>：推論延遲更低，pipeline 更乾淨</li>
+<li><strong>缺點</strong>：assignment 設計與訓練理解門檻高</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov11多任務整合的成熟版">YOLOv11｜多任務整合的成熟版<a href="#yolov11多任務整合的成熟版" class="hash-link" aria-label="YOLOv11｜多任務整合的成熟版的直接連結" title="YOLOv11｜多任務整合的成熟版的直接連結">​</a></h3>
+<ul>
+<li><strong>年份</strong>：2024</li>
+<li><strong>核心思想</strong>：在高效率下完成多任務整合</li>
+<li><strong>設計特徵</strong>：優化 backbone（C3k2、SPPF），原生支援多任務</li>
+<li><strong>優點</strong>：更少參數、更高 mAP，適合作為通用基線</li>
+<li><strong>缺點</strong>：屬於漸進式改良，突破性創新相對有限</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="references">References<a href="#references" class="hash-link" aria-label="References的直接連結" title="References的直接連結">​</a></h2>
+<ul>
+<li>Kotthapalli, M., Ravipati, D., &amp; Bhatia, R. (2025).<br>
+<em>YOLOv1 to YOLOv11: A comprehensive survey of real-time object detection innovations and challenges</em>.<br>
+<!-- -->arXiv preprint arXiv:2508.02067.</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/notes"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">Introduction</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/notes/yolo/outline"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">YOLO 的演進</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#yolo-五大面向的設計演進" class="table-of-contents__link toc-highlight">YOLO 五大面向的設計演進</a><ul><li><a href="#backbone" class="table-of-contents__link toc-highlight">Backbone</a></li><li><a href="#neck--feature-fusion" class="table-of-contents__link toc-highlight">Neck / Feature Fusion</a></li><li><a href="#detection-head" class="table-of-contents__link toc-highlight">Detection Head</a></li><li><a href="#loss--label-assignment" class="table-of-contents__link toc-highlight">Loss &amp; Label Assignment</a></li><li><a href="#training-strategies" class="table-of-contents__link toc-highlight">Training Strategies</a></li></ul></li><li><a href="#yolo-中-anchor--nms-設計的演進" class="table-of-contents__link toc-highlight">YOLO 中 Anchor / NMS 設計的  演進</a><ul><li><a href="#anchor-basedyolov2yolov7" class="table-of-contents__link toc-highlight">Anchor-based（YOLOv2–YOLOv7）</a></li><li><a href="#anchor-freeyolov8yolov9" class="table-of-contents__link toc-highlight">Anchor-free（YOLOv8–YOLOv9）</a></li><li><a href="#nms-freeyolov10" class="table-of-contents__link toc-highlight">NMS-free（YOLOv10）</a></li></ul></li><li><a href="#loss-與-label-assignment-的演進" class="table-of-contents__link toc-highlight">Loss 與 Label Assignment 的演進</a><ul><li><a href="#loss-的演進" class="table-of-contents__link toc-highlight">Loss 的演進</a></li><li><a href="#label-assignment-的演進" class="table-of-contents__link toc-highlight">Label Assignment 的演進</a></li><li><a href="#loss--assignment-的關係" class="table-of-contents__link toc-highlight">Loss × Assignment 的關係</a></li></ul></li><li><a href="#實務部署觀點" class="table-of-contents__link toc-highlight">實務部署觀點</a></li><li><a href="#yolo-的擴展任務" class="table-of-contents__link toc-highlight">YOLO 的擴展任務</a><ul><li><a href="#instance-segmentation" class="table-of-contents__link toc-highlight">Instance Segmentation</a></li><li><a href="#pose-estimation" class="table-of-contents__link toc-highlight">Pose Estimation</a></li><li><a href="#object-tracking" class="table-of-contents__link toc-highlight">Object Tracking</a></li><li><a href="#oriented-object-detection" class="table-of-contents__link toc-highlight">Oriented Object Detection</a></li><li><a href="#multi-task-learning" class="table-of-contents__link toc-highlight">Multi-task Learning</a></li><li><a href="#transformer-based-designs" class="table-of-contents__link toc-highlight">Transformer-based Designs</a></li><li><a href="#robustness-and-adaptation" class="table-of-contents__link toc-highlight">Robustness and Adaptation</a></li></ul></li><li><a href="#挑戰與未來方向" class="table-of-contents__link toc-highlight">挑戰與未來方向</a><ul><li><a href="#challenges" class="table-of-contents__link toc-highlight">Challenges</a></li><li><a href="#future-directions" class="table-of-contents__link toc-highlight">Future Directions</a></li></ul></li><li><a href="#yolov1yolov11-簡介" class="table-of-contents__link toc-highlight">YOLOv1–YOLOv11 簡介</a><ul><li><a href="#yolov1single-stage-的可行性驗證" class="table-of-contents__link toc-highlight">YOLOv1｜Single-Stage 的可行性驗證</a></li><li><a href="#yolov2讓-yolo-變得像個-detector" class="table-of-contents__link toc-highlight">YOLOv2｜讓 YOLO 變得「像個 detector」</a></li><li><a href="#yolov3多尺度輸出解決小物體" class="table-of-contents__link toc-highlight">YOLOv3｜多尺度輸出解決小物體</a></li><li><a href="#yolov4training-trick-的集大成" class="table-of-contents__link toc-highlight">YOLOv4｜Training Trick 的集大成</a></li><li><a href="#yolov5yolo-的產品化轉折" class="table-of-contents__link toc-highlight">YOLOv5｜YOLO 的產品化轉折</a></li><li><a href="#yolov6工業與-edge-導向設計" class="table-of-contents__link toc-highlight">YOLOv6｜工業與 Edge 導向設計</a></li><li><a href="#yolov7cnn-架構下的效能巔峰" class="table-of-contents__link toc-highlight">YOLOv7｜CNN 架構下的效能巔峰</a></li><li><a href="#yolov8全面轉向-anchor-free" class="table-of-contents__link toc-highlight">YOLOv8｜全面轉向 Anchor-Free</a></li><li><a href="#yolov9精緻化特徵與訓練目標" class="table-of-contents__link toc-highlight">YOLOv9｜精緻化特徵與訓練目標</a></li><li><a href="#yolov10nms-free-的端到端偵測" class="table-of-contents__link toc-highlight">YOLOv10｜NMS-Free 的端到端偵測</a></li><li><a href="#yolov11多任務整合的成熟版" class="table-of-contents__link toc-highlight">YOLOv11｜多任務整合的成熟版</a></li></ul></li><li><a href="#references" class="table-of-contents__link toc-highlight">References</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://profile.104.com.tw/profile/9f11e5a7-4d3b-4a21-9241-ba6e3f9003c8/about" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
+              <p>
+              illustrations by <a href="https://storyset.com/web">Storyset</a>
+              </p>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Chao-En Huang. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

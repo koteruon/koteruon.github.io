@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://koteruon.github.io">
-    <img src="https://koteruon.github.io/images/homepage/research.svg" alt="Research Icon" width="72" height="72">
+  <a href="https://blog.koteruon.com">
+    <img src="https://blog.koteruon.com/images/homepage/research.svg" alt="Research Icon" width="72" height="72">
   </a>
 </p>
 
@@ -11,9 +11,9 @@
 </p>
 
 <p align="center">
-  <a href="https://koteruon.github.io/docs/notes"><strong>AI Engineering Notes</strong></a> ·
-  <a href="https://koteruon.github.io/docs/research"><strong>Research</strong></a> ·
-  <a href="https://koteruon.github.io/blog"><strong>Blog</strong></a>
+  <a href="https://blog.koteruon.com/docs/notes"><strong>AI Engineering Notes</strong></a> ·
+  <a href="https://blog.koteruon.com/docs/research"><strong>Research</strong></a> ·
+  <a href="https://blog.koteruon.com/blog"><strong>Blog</strong></a>
 </p>
 
 ---
@@ -23,24 +23,24 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <a href="https://koteruon.github.io/docs/notes">
-        <img src="https://koteruon.github.io/images/homepage/notes.svg" alt="AI Engineering Notes" height="80">
+      <a href="https://blog.koteruon.com/docs/notes">
+        <img src="https://blog.koteruon.com/images/homepage/notes.svg" alt="AI Engineering Notes" height="80">
       </a>
-      <h3><a href="https://koteruon.github.io/docs/notes">AI Engineering Notes</a></h3>
+      <h3><a href="https://blog.koteruon.com/docs/notes">AI Engineering Notes</a></h3>
       <p>Insights on AI engineering and machine learning foundations, including system design, backend systems, and practical LLM infrastructure.</p>
     </td>
     <td align="center" width="33%">
-      <a href="https://koteruon.github.io/docs/research">
-        <img src="https://koteruon.github.io/images/homepage/research.svg" alt="Research" height="80">
+      <a href="https://blog.koteruon.com/docs/research">
+        <img src="https://blog.koteruon.com/images/homepage/research.svg" alt="Research" height="80">
       </a>
-      <h3><a href="https://koteruon.github.io/docs/research">Research</a></h3>
+      <h3><a href="https://blog.koteruon.com/docs/research">Research</a></h3>
       <p>AI-driven analysis of table tennis trajectories, serving/hitting classification, racket segmentation, and image steganography implementations.</p>
     </td>
     <td align="center" width="33%">
-      <a href="https://koteruon.github.io/blog">
-        <img src="https://koteruon.github.io/images/homepage/blog.svg" alt="Blog" height="80">
+      <a href="https://blog.koteruon.com/blog">
+        <img src="https://blog.koteruon.com/images/homepage/blog.svg" alt="Blog" height="80">
       </a>
-      <h3><a href="https://koteruon.github.io/blog">Blog</a></h3>
+      <h3><a href="https://blog.koteruon.com/blog">Blog</a></h3>
       <p>A collection of technical documents, tutorials, and real-world solutions.</p>
     </td>
   </tr>
@@ -51,9 +51,9 @@
 ## 🧭 Quick Links
 
 - 📚 Docs:
-  - AI Engineering Notes → <a href="https://koteruon.github.io/docs/notes">/docs/notes</a>
-  - Research → <a href="https://koteruon.github.io/docs/research">/docs/research</a>
-- 📝 Blog → <a href="https://koteruon.github.io/blog">/blog</a>
+  - AI Engineering Notes → <a href="https://blog.koteruon.com/docs/notes">/docs/notes</a>
+  - Research → <a href="https://blog.koteruon.com/docs/research">/docs/research</a>
+- 📝 Blog → <a href="https://blog.koteruon.com/blog">/blog</a>
 
 ---
 
@@ -80,7 +80,7 @@ I’m Calvin (Chao-En Huang), a CS graduate focused on computer vision and deep 
 
 ## 📬 Contact
 
-- Personal Site: <a href="https://koteruon.github.io">koteruon.github.io</a>
+- Personal Site: <a href="https://blog.koteruon.com">blog.koteruon.com</a>
 - GitHub: <a href="https://github.com/koteruon">@koteruon</a>
 
 ---

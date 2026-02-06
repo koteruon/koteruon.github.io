@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-Hant" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-notes/computer-vision/yolo-backbone" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">YOLO 的 Backbone 演進 | Chao-En Huang</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://blog.koteruon.com/images/icon/chao_en_huang_icon.png"><meta data-rh="true" name="twitter:image" content="https://blog.koteruon.com/images/icon/chao_en_huang_icon.png"><meta data-rh="true" property="og:url" content="https://blog.koteruon.com/docs/notes/computer-vision/yolo-backbone"><meta data-rh="true" property="og:locale" content="zh_Hant"><meta data-rh="true" name="docusaurus_locale" content="zh-Hant"><meta data-rh="true" name="docsearch:language" content="zh-Hant"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="YOLO 的 Backbone 演進 | Chao-En Huang"><meta data-rh="true" name="description" content="YOLO 的 backbone 演進，並不是單純「越做越深」，而是一條讓深度可訓練、梯度可流動、計算可控的設計路線。"><meta data-rh="true" property="og:description" content="YOLO 的 backbone 演進，並不是單純「越做越深」，而是一條讓深度可訓練、梯度可流動、計算可控的設計路線。"><link data-rh="true" rel="icon" href="/images/icon/favicon.ico"><link data-rh="true" rel="canonical" href="https://blog.koteruon.com/docs/notes/computer-vision/yolo-backbone"><link data-rh="true" rel="alternate" href="https://blog.koteruon.com/docs/notes/computer-vision/yolo-backbone" hreflang="zh-Hant"><link data-rh="true" rel="alternate" href="https://blog.koteruon.com/docs/notes/computer-vision/yolo-backbone" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Chao-En Huang RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Chao-En Huang Atom Feed">
+
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script>window.dataLayer=window.dataLayer||[]</script>
+<script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-5X8N2TCV",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.42b2a4f7.css">
+<script src="/assets/js/runtime~main.969f11d5.js" defer="defer"></script>
+<script src="/assets/js/main.cfc4a919.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X8N2TCV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳至主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳至主要内容</a></div><nav aria-label="主導航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="切換導覽列" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/images/icon/apple-touch-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Chao-En</b></a><a class="navbar__item navbar__link" href="/about-me">About Me</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/notes">Notes</a><a class="navbar__item navbar__link" href="/docs/research">Research</a><a class="navbar__item navbar__link" href="/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="切換淺色/深色模式（當前為淺色模式）" aria-label="切換淺色/深色模式（當前為淺色模式）" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到頂部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文件側邊欄" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/notes">Introduction</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/docs/notes/computer-vision/yolo-outline">電腦視覺研究筆記</a><button aria-label="收起側邊欄分類 &#x27;電腦視覺研究筆記&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/computer-vision/yolo-outline">YOLO 的演進</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/notes/computer-vision/yolo-backbone">YOLO 的 Backbone 演進</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/notes/computer-vision/vit">主流模型架構</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2021/machine-learning-basics">李宏毅機器學習 2021</a><button aria-label="展開側邊欄分類 &#x27;李宏毅機器學習 2021&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2024/what-is-generative-ai">李宏毅生成式AI 2024</a><button aria-label="展開側邊欄分類 &#x27;李宏毅生成式AI 2024&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/hung-yi-lee-2025/future-of-generative-ai">李宏毅生成式AI 2025</a><button aria-label="展開側邊欄分類 &#x27;李宏毅生成式AI 2025&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/design-pattern">Design Patterns</a><button aria-label="展開側邊欄分類 &#x27;Design Patterns&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/docker-basics">Docker Basics</a><button aria-label="展開側邊欄分類 &#x27;Docker Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/kubernetes-basics">Kubernetes Basics</a><button aria-label="展開側邊欄分類 &#x27;Kubernetes Basics&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/owasp-top10-2021">OWASP Top 10 (2021)</a><button aria-label="展開側邊欄分類 &#x27;OWASP Top 10 (2021)&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/docs/notes/ollama">Ollama</a><button aria-label="展開側邊欄分類 &#x27;Ollama&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="頁面路徑"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="主頁面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/docs/notes/computer-vision/yolo-outline"><span itemprop="name">電腦視覺研究筆記</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">YOLO 的 Backbone 演進</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本頁導覽</button></div><div class="theme-doc-markdown markdown"><header><h1>YOLO 的 Backbone 演進</h1></header>
+<p>YOLO 的 backbone 演進，並不是單純「越做越深」，而是一條<strong>讓深度可訓練、梯度可流動、計算可控</strong>的設計路線。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="classification--detection-backbones">Classification → Detection Backbones<a href="#classification--detection-backbones" class="hash-link" aria-label="Classification → Detection Backbones的直接連結" title="Classification → Detection Backbones的直接連結">​</a></h2>
+<p>早期 YOLO 並沒有為 detection 設計專用 backbone，而是直接沿用分類模型。</p>
+<ul>
+<li><strong>YOLOv1–v2</strong>
+<ul>
+<li>使用類分類 CNN（YOLOv1 自建 CNN、YOLOv2 的 Darknet-19）</li>
+<li>優點是結構簡單、速度快</li>
+<li>但特徵表達能力有限，<strong>難以同時支撐多尺度與精細定位</strong></li>
+</ul>
+</li>
+<li><strong>關鍵問題</strong>
+<ul>
+<li>分類 backbone 追求語意抽象</li>
+<li>Detection 需要同時保留 <strong>空間細節 + 語意層級</strong></li>
+<li>這個衝突在小物體與密集場景中特別明顯</li>
+</ul>
+</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="yolov1-custom-cnn" src="/assets/images/yolov1-custom-cnn-b1083f3aa9d41f5c463e63d5cc981b30.png" width="1425" height="588" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="yolov2-darknet-19" src="/assets/images/yolov2-darknet-19-b568b95c29207295735e858ebae2e4e4.png" width="528" height="661" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>YOLOv1 Custom CNN</strong></td><td style="text-align:center"><strong>YOLOv2 Darknet-19</strong></td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="residual-backbone讓深度可用yolov3">Residual Backbone：讓深度可用（YOLOv3）<a href="#residual-backbone讓深度可用yolov3" class="hash-link" aria-label="Residual Backbone：讓深度可用（YOLOv3）的直接連結" title="Residual Backbone：讓深度可用（YOLOv3）的直接連結">​</a></h2>
+<p>YOLOv3 是第一個真正解決 backbone 深度問題的版本。</p>
+<ul>
+<li><strong>Darknet-53</strong>
+<ul>
+<li>引入 residual connection</li>
+<li>讓梯度可以穩定傳遞到深層</li>
+</ul>
+</li>
+<li><strong>設計意義</strong>
+<ul>
+<li>backbone 不再只是「跑得快」</li>
+<li>而是開始能承載多尺  度特徵學習</li>
+</ul>
+</li>
+<li><strong>影響</strong>
+<ul>
+<li>為後續 multi-scale prediction、FPN / PAN 打下基礎</li>
+<li>YOLO 開始進入「可長期演化」的架構狀態</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>但這一代的問題是：<strong>深度增加 ≠ 計算效率好</strong>。</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="yolov3-darknet-53" src="/assets/images/yolov3-darknet-53-14d6d8c48802108b2efda946bfa8445b.png" width="437" height="619" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="csp不是加深而是切開梯度流yolov4yolov5">CSP：不是加深，而是「切開」梯度流（YOLOv4–YOLOv5）<a href="#csp不是加深而是切開梯度流yolov4yolov5" class="hash-link" aria-label="CSP：不是加深，而是「切開」梯度流（YOLOv4–YOLOv5）的直接連結" title="CSP：不是加深，而是「切開」梯度流（YOLOv4–YOLOv5）的直接連結">​</a></h2>
+<p>CSP（Cross Stage Partial Network）的提出，<strong>不是為了做一個更深的 backbone</strong>，而是為了解決深度 CNN 中一個被忽略的問題：</p>
+<blockquote>
+<p><strong>大量重複的梯度資訊，正在浪費計算與學習能力</strong></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="residual--dense-的效率瓶頸">Residual / Dense 的效率瓶頸<a href="#residual--dense-的效率瓶頸" class="hash-link" aria-label="Residual / Dense 的效率瓶頸的直接連結" title="Residual / Dense 的效率瓶頸的直接連結">​</a></h3>
+<p>論文指出，即使是 ResNet 或 DenseNet 這類「梯度友善」的架構，仍存在結構性問題：</p>
+<ul>
+<li>在 residual / dense 架構中：<!-- -->
+<ul>
+<li>每一層都會接收到<strong>來自所有前層的梯度</strong></li>
+<li>梯度路徑雖然變短，但<strong>資訊高度相關</strong></li>
+</ul>
+</li>
+<li>結果是：<!-- -->
+<ul>
+<li>不同層學到<strong>高度重複的梯度資訊</strong></li>
+<li>造成：<!-- -->
+<ul>
+<li>不必要  的計算</li>
+<li>記憶體流量（memory traffic）增加</li>
+<li>訓練與推論效率下降</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Residual 解決了「梯度消失」，但沒有解決「梯度重複」。</strong></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="csp-的核心假設">CSP 的核心假設<a href="#csp-的核心假設" class="hash-link" aria-label="CSP 的核心假設的直接連結" title="CSP 的核心假設的直接連結">​</a></h3>
+<p>CSPNet 明確提出一個假設：</p>
+<blockquote>
+<p>CNN 的效能瓶頸，不只是深度或寬度，
+而是「<strong>不同層是否真的學到不同的資訊</strong>」。</p>
+</blockquote>
+<p>因此 CSP 的目標不是增加 capacity，而是：</p>
+<ul>
+<li><strong>最大化梯度組合的多樣性（gradient combination diversity）</strong></li>
+<li><strong>最小化重複梯度造成的無效學習</strong></li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="cspnet" src="/assets/images/cspnet-8e0dc52f31ed60a3dae795d05ec13842.png" width="652" height="593" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="csp-的核心做法">CSP 的核心做法<a href="#csp-的核心做法" class="hash-link" aria-label="CSP 的核心做法的直接連結" title="CSP 的核心做法的直接連結">​</a></h3>
+<blockquote>
+<p>不讓所有 feature 都參與所有層的梯度回傳，而是<strong>刻意截斷一部分梯度流</strong>。</p>
+</blockquote>
+<p>具體作法是：</p>
+<ul>
+<li>在一個 stage 開始時：<!-- -->
+<ul>
+<li>將輸入 feature map <strong>沿 channel 切成兩部分</strong></li>
+</ul>
+</li>
+<li>兩條路徑：<!-- -->
+<ul>
+<li><strong>Path A</strong>：直接 bypass（不進入深層 block）</li>
+<li><strong>Path B</strong>：進入完整的 residual / dense block</li>
+</ul>
+</li>
+<li>在 stage 結尾：<!-- -->
+<ul>
+<li>先對 Path B 做 transition（如 conv / pooling）</li>
+<li>再與 Path A concat</li>
+<li><strong>刻意選擇「fusion last」策略以截斷  梯度重用</strong></li>
+</ul>
+</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="dense-net" src="/assets/images/dense-net-329faf80485f1ce146ea2be01648f19e.png" width="887" height="281" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="csp-dense-net" src="/assets/images/csp-dense-net-6fc21055e20fac5bef7edacd87430ae6.png" width="866" height="274" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>DenseNet</strong></td><td style="text-align:center"><strong>Cross Stage Partial DenseNet</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="為什麼一定要fusion-last">為什麼一定要「fusion last」？<a href="#為什麼一定要fusion-last" class="hash-link" aria-label="為什麼一定要「fusion last」？的直接連結" title="為什麼一定要「fusion last」？的直接連結">​</a></h3>
+<p>論文做了非常關鍵的 ablation：</p>
+<ul>
+<li><strong>Fusion first（先 concat 再 transition）</strong>
+<ul>
+<li>梯度仍然高度重複</li>
+<li>計算下降，但 accuracy 明顯掉</li>
+</ul>
+</li>
+<li><strong>Fusion last（先 transition 再 concat）</strong>
+<ul>
+<li>梯度流被有效截斷</li>
+<li>計算量下降 <strong>20%</strong></li>
+<li>Top-1 accuracy 幾乎不變（僅 ~0.1%）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>這證實 CSP 的關鍵不是結構形式，而是 <strong>「避免不同路徑學到相同梯度訊號」</strong>。</p>
+</blockquote>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="cspnet-fusion-stage" src="/assets/images/cspnet-fusion-stage-01c6b028061dc944920a9f6bf1a2847c.png" width="840" height="581" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="cspnet-fusion-experimental-results" src="/assets/images/cspnet-fusion-experimental-results-f91b91dff593dc96a07c796761f7ea64.png" width="730" height="534" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>Fusion Fisrt 和 Fusion Last 的模型架構</strong></td><td style="text-align:center"><strong>Fusion Last 明顯比 Fusion First 好</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="csp-解決的三個實際問題">CSP 解決的三個實際問題<a href="#csp-解決的三個實際問題" class="hash-link" aria-label="CSP 解決的三個實際問題的直接連結" title="CSP 解決的三個實際問題的直接連結">​</a></h3>
+<p>CSPNet 在論文中明確說，它同時解決三個工程層面的問題：</p>
+<ol>
+<li><strong>強化 learning capability</strong>
+<ul>
+<li>在計算更少的情況下，模型反而學得更好</li>
+<li>特別對 lightweight backbone 效果顯著</li>
+</ul>
+</li>
+<li><strong>降低 computational bottleneck</strong>
+<ul>
+<li>計算不再集中在少數層</li>
+<li>提升硬體 utilization（GPU / CPU / ASIC）</li>
+</ul>
+</li>
+<li><strong>降低 memory traffic</strong>
+<ul>
+<li>減少 feature map 的重複讀寫</li>
+<li>對 edge / embedded 裝置特別重要</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="在-yolo-中的影響">在 YOLO 中的影響<a href="#在-yolo-中的影響" class="hash-link" aria-label="在 YOLO 中的影響的直接連結" title="在 YOLO 中的影響的直接連結">​</a></h3>
+<ul>
+<li><strong>YOLOv4：CSPDarknet-53</strong>
+<ul>
+<li>明顯降低 FLOPs</li>
+<li>改善梯度流動穩定性</li>
+</ul>
+</li>
+<li><strong>YOLOv5：CSP-based Backbone</strong>
+<ul>
+<li>CSP 成為「工程上可維護」的核心骨幹</li>
+<li>讓模型 scaling（s / m / l / x）變得可控</li>
+</ul>
+</li>
+</ul>
+<table><thead><tr><th style="text-align:center"><img decoding="async" loading="lazy" alt="yolov4-cspnet" src="/assets/images/yolov4-cspnet-d5e83884c85c4aaf93c227050e39c3ba.png" width="464" height="146" class="img_ev3q"></th><th style="text-align:center"><img decoding="async" loading="lazy" alt="yolov5-csp1-csp2" src="/assets/images/yolov5-csp1-csp2-ae993f0097e14547ff9ae035a9a79a59.png" width="610" height="119" class="img_ev3q"></th></tr></thead><tbody><tr><td style="text-align:center"><strong>YOLOv4：CSPDarknet-53</strong></td><td style="text-align:center"><strong>YOLOv5：CSP-based Backbone</strong></td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="csp1_x用在-backbone">CSP1_X（用在 Backbone）<a href="#csp1_x用在-backbone" class="hash-link" aria-label="CSP1_X（用在 Backbone）的直接連結" title="CSP1_X（用在 Backbone）的直接連結">​</a></h3>
+<ul>
+<li><strong>核心設計目的</strong>
+<ul>
+<li>解決 <strong>深層網路中梯度重複、學習冗餘</strong> 的問題</li>
+<li>讓 backbone <strong>可以變深，但不讓計算與梯度爆炸</strong></li>
+</ul>
+</li>
+<li><strong>結構特徵</strong>
+<ul>
+<li>將輸入 feature <strong>切成兩條路徑</strong>
+<ul>
+<li><strong>主幹路徑</strong>：經過多個 <strong>Residual / Bottleneck block</strong></li>
+<li><strong>捷徑路徑</strong>：幾乎不做計算，直接保留原始特徵</li>
+</ul>
+</li>
+<li>在 stage 結尾進行 <strong>Concat + Conv 融合</strong></li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="yolov5-csp1_x" src="/assets/images/yolov5-csp1_x-1fa7df9aba73aff9f7cee417243edceb.png" width="543" height="122" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="csp2_x用在-neck">CSP2_X（用在 Neck）<a href="#csp2_x用在-neck" class="hash-link" aria-label="CSP2_X（用在 Neck）的直接連結" title="CSP2_X（用在 Neck）的直接連結">​</a></h3>
+<ul>
+<li><strong>核心設計目的</strong>
+<ul>
+<li>降低 <strong>Neck 階段的計算量與延遲</strong></li>
+<li>在特徵已經足夠語意化的前提下，<strong>避免過度複雜化</strong></li>
+</ul>
+</li>
+<li><strong>結構特徵</strong>
+<ul>
+<li>同樣採用雙分支結構，但：<!-- -->
+<ul>
+<li><strong>不使用 Residual block</strong></li>
+<li>改為 <strong>連續的 CBS / CBL 卷積</strong></li>
+</ul>
+</li>
+<li>整體結構更淺，計算成本更可控</li>
+</ul>
+</li>
+<li><strong>為什麼不用 Residual</strong>
+<ul>
+<li>Neck 的特徵已是融合後的高階語意</li>
+<li>不再需要深層表示學習，Residual 的收益有限</li>
+</ul>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="yolov5-csp2_x" src="/assets/images/yolov5-csp2_x-a7652f8891e21e4f5f2f85c771382f2a.png" width="538" height="113" class="img_ev3q"></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="csp-到-c2fyolov5--yolov8">CSP 到 C2f（YOLOv5 → YOLOv8）<a href="#csp-到-c2fyolov5--yolov8" class="hash-link" aria-label="CSP 到 C2f（YOLOv5 → YOLOv8）的直接連結" title="CSP 到 C2f（YOLOv5 → YOLOv8）的直接連結">​</a></h2>
+<p>YOLOv8 並沒有否定 CSP，而是<strong>重新整理它的工程形態</strong>。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov5-的特徵">YOLOv5 的特徵<a href="#yolov5-的特徵" class="hash-link" aria-label="YOLOv5 的特徵的直接連結" title="YOLOv5 的特徵的直接連結">​</a></h3>
+<ul>
+<li>CSP + Bottleneck 結構</li>
+<li>架構成熟、穩定</li>
+<li>但 block 組合偏複雜，對新任務與新 head 擴展不夠直覺</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="yolov8-的改動c2f">YOLOv8 的改動：C2f<a href="#yolov8-的改動c2f" class="hash-link" aria-label="YOLOv8 的改動：C2f的直接連結" title="YOLOv8 的改動：C2f的直接連結">​</a></h3>
+<ul>
+<li><strong>C2f（Cross-Stage with 2 flows）</strong>
+<ul>
+<li>保留 CSP「分流」的精神</li>
+<li>但減少巢狀 bottleneck 與重複模組</li>
+</ul>
+</li>
+<li><strong>設計動機</strong>
+<ul>
+<li>提高 feature reuse</li>
+<li>讓梯度路徑更短、更可預期</li>
+<li>對 anchor-free、multi-task head 更友善</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="效果">效果<a href="#效果" class="hash-link" aria-label="效果的直接連結" title="效果的直接連結">​</a></h3>
+<ul>
+<li>backbone 結構更乾  淨</li>
+<li>訓練穩定性更好</li>
+<li>成為 Ultralytics 生態系的長期基線</li>
+</ul>
+<blockquote>
+<p>YOLOv8 的 backbone 並不是追求 SOTA，而是追求<strong>可長期擴展性</strong>。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="elan--e-elan--gelan從深轉向梯度路徑設計yolov7yolov9">ELAN / E-ELAN / GELAN：從「深」轉向「梯度路徑設計」（YOLOv7–YOLOv9）<a href="#elan--e-elan--gelan從深轉向梯度路徑設計yolov7yolov9" class="hash-link" aria-label="ELAN / E-ELAN / GELAN：從「深」轉向「梯度路徑設計」（YOLOv7–YOLOv9）的直接連結" title="ELAN / E-ELAN / GELAN：從「深」轉向「梯度路徑設計」（YOLOv7–YOLOv9）的直接連結">​</a></h2>
+<p>這一條線是 WongKinYiu 系列 YOLO 的核心思想。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="elanyolov7">ELAN（YOLOv7）<a href="#elanyolov7" class="hash-link" aria-label="ELAN（YOLOv7）的直接連結" title="ELAN（YOLOv7）的直接連結">​</a></h3>
+<ul>
+<li>不只是 residual，而是<strong>規劃梯度傳遞路徑</strong></li>
+<li>目標是：<!-- -->
+<ul>
+<li>保持深度</li>
+<li>但避免梯度在 merge 時失真</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="e-elan">E-ELAN<a href="#e-elan" class="hash-link" aria-label="E-ELAN的直接連結" title="E-ELAN的直接連結">​</a></h3>
+<ul>
+<li>延伸 ELAN 的 aggregation 思想</li>
+<li>強調：<!-- -->
+<ul>
+<li>多分支</li>
+<li>但可控的 feature 合流順序</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gelanyolov9">GELAN（YOLOv9）<a href="#gelanyolov9" class="hash-link" aria-label="GELAN（YOLOv9）的直接連結" title="GELAN（YOLOv9）的直接連結">​</a></h3>
+<ul>
+<li>從資訊理論角度出發（information bottleneck）</li>
+<li>結合 <strong>PGI（Programmable Gradient Information）</strong></li>
+<li>重點不是 FLOPs 最低，而是：<!-- -->
+<ul>
+<li><strong>單位參數資訊保留最大化</strong></li>
+<li>梯度更「可靠」</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>這一系列 backbone 的核心不是「多快」，而是「<strong>學到的資訊是否被浪費</strong>」。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="後期-backbone-的共通趨勢yolov9yolov11">後期 Backbone 的共通趨勢（YOLOv9–YOLOv11）<a href="#後期-backbone-的共通趨勢yolov9yolov11" class="hash-link" aria-label="後期 Backbone 的共通趨勢（YOLOv9–YOLOv11）的直接連結" title="後期 Backbone 的共通趨勢（YOLOv9–YOLOv11）的直接連結">​</a></h2>
+<p>到了最新世代，YOLO backbone 的關注點非常一致：</p>
+<ul>
+<li>不再追求更深、更大</li>
+<li>而是：<!-- -->
+<ul>
+<li>更好的 <strong>parameter utilization</strong></li>
+<li>更穩定的梯度</li>
+<li>更清楚的結構語意</li>
+</ul>
+</li>
+<li>為多任務（det / seg / pose / OBB）服務</li>
+</ul>
+<p>這也是為什麼：</p>
+<ul>
+<li>YOLOv11 的 backbone 改動相對「溫和」</li>
+<li>但在效率與泛化上仍有提升</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件選項卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/notes/computer-vision/yolo-outline"><div class="pagination-nav__sublabel">上一頁</div><div class="pagination-nav__label">YOLO 的演進</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/notes/computer-vision/vit"><div class="pagination-nav__sublabel">下一頁</div><div class="pagination-nav__label">主流模型架構</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#classification--detection-backbones" class="table-of-contents__link toc-highlight">Classification → Detection Backbones</a></li><li><a href="#residual-backbone讓深度可用yolov3" class="table-of-contents__link toc-highlight">Residual Backbone：讓深度可用（YOLOv3）</a></li><li><a href="#csp不是加深而是切開梯度流yolov4yolov5" class="table-of-contents__link toc-highlight">CSP：不是加深，而是「切開」梯度流（YOLOv4–YOLOv5）</a><ul><li><a href="#residual--dense-的效率瓶頸" class="table-of-contents__link toc-highlight">Residual / Dense 的效率瓶頸</a></li><li><a href="#csp-的核心假設" class="table-of-contents__link toc-highlight">CSP 的核心假設</a></li><li><a href="#csp-的核心做法" class="table-of-contents__link toc-highlight">CSP 的核心做法</a></li><li><a href="#為什麼一定要fusion-last" class="table-of-contents__link toc-highlight">為什麼一定要「fusion last」？</a></li><li><a href="#csp-解決的三個實際問題" class="table-of-contents__link toc-highlight">CSP 解決的三個實際問題</a></li><li><a href="#在-yolo-中的影響" class="table-of-contents__link toc-highlight">在 YOLO 中的影響</a></li><li><a href="#csp1_x用在-backbone" class="table-of-contents__link toc-highlight">CSP1_X（用在 Backbone）</a></li><li><a href="#csp2_x用在-neck" class="table-of-contents__link toc-highlight">CSP2_X（用在 Neck）</a></li></ul></li><li><a href="#csp-到-c2fyolov5--yolov8" class="table-of-contents__link toc-highlight">CSP 到 C2f（YOLOv5 → YOLOv8）</a><ul><li><a href="#yolov5-的特徵" class="table-of-contents__link toc-highlight">YOLOv5 的特徵</a></li><li><a href="#yolov8-的改動c2f" class="table-of-contents__link toc-highlight">YOLOv8 的改動：C2f</a></li><li><a href="#效果" class="table-of-contents__link toc-highlight">效果</a></li></ul></li><li><a href="#elan--e-elan--gelan從深轉向梯度路徑設計yolov7yolov9" class="table-of-contents__link toc-highlight">ELAN / E-ELAN / GELAN：從「深」轉向「梯度路徑設計」（YOLOv7–YOLOv9）</a><ul><li><a href="#elanyolov7" class="table-of-contents__link toc-highlight">ELAN（YOLOv7）</a></li><li><a href="#e-elan" class="table-of-contents__link toc-highlight">E-ELAN</a></li><li><a href="#gelanyolov9" class="table-of-contents__link toc-highlight">GELAN（YOLOv9）</a></li></ul></li><li><a href="#後期-backbone-的共通趨勢yolov9yolov11" class="table-of-contents__link toc-highlight">後期 Backbone 的共通趨勢（YOLOv9–YOLOv11）</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This Website</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/notes">Notes</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/research">Research</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/koteruon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://profile.104.com.tw/profile/9f11e5a7-4d3b-4a21-9241-ba6e3f9003c8/about" target="_blank" rel="noopener noreferrer" class="footer__link-item">104<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.linkedin.com/in/%E7%85%A7%E6%81%A9-%E9%BB%83-93511b25b" target="_blank" rel="noopener noreferrer" class="footer__link-item">Linkedin<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Acknowledgement</div><ul class="footer__items clean-list"><li class="footer__item">
+              <p>
+              illustrations by <a href="https://storyset.com/web">Storyset</a>
+              </p>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Chao-En Huang. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
